@@ -5,7 +5,7 @@ import { LoadingController, NavController, ToastController, AlertController, Men
 import { Configuration } from '../../service/app.constants';
 import { AuthService } from '../../service/auth.service';
 
-import { HomePage } from '../home/home';
+import { AllRequestPage } from '../all-request/request';
 
 @Component({
   selector: 'page-login',
@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
     this.presentLoadingDefault('Authenticating...');
     this.authService.verifyUser(data).subscribe(response => {
       this.loading.dismiss();
-      this.navCtrl.setRoot(HomePage);  // Set homepage to root
+      this.navCtrl.setRoot(AllRequestPage);  // Set homepage to root
       this.successToast();
     }, (err) => {
       this.loading.dismiss();
