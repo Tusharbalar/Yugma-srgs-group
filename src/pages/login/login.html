@@ -1,0 +1,21 @@
+<ion-content class="login-screen csLoginScreen" padding>
+  <form (ngSubmit)="login()" novalidate>
+    <ion-list class="letter-space">
+      <ion-item class="csLoginBox">
+        <ion-icon name="person" class="csInput csInputIcon" item-left></ion-icon>
+        <ion-label stacked >Username</ion-label>
+        <ion-input type="text" name="username" [(ngModel)]="username" class="csInput"></ion-input>
+      </ion-item>
+      <ion-item class="csLoginBox ">
+        <ion-icon name="md-unlock" class="csInputIcon csInput" item-left></ion-icon>
+        <ion-label stacked>Password</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="password" class="csInput"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button  ion-button full type="submit">Login</button>
+  </form>
+  <button item-right center icon-left ion-button clear (click)="openModal()">
+    <ion-icon name="sad"></ion-icon>
+    Forgot Password?
+  </button>
+</ion-content>
