@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { LoadingController, NavController, ToastController, AlertController, MenuController } from 'ionic-angular';
 
@@ -12,7 +12,7 @@ import { AllRequestPage } from '../all-request/request';
   templateUrl: 'login.html'
 })
 
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   user: any;
 
@@ -31,10 +31,8 @@ export class LoginPage implements OnInit {
               public toastCtrl: ToastController,
               private alertCtrl: AlertController) { this.menuCtrl.enable(false); }
 
-  ngOnInit() {
-  }
-
   login() {
+    if (this.username === undefined || this.password === undefined) { return false; }
     let data = {
       username: this.username,
       password: this.password
