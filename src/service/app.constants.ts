@@ -34,10 +34,10 @@ export class Configuration {
     }
   }
 
-  public Server: string = "https://yugmasrgstesting.appspot.com";
+  public Server: string = "https://yugma-ut.appspot.com";
 
   setUrl(url) {
-    this.Server = "https://yugmasrgstesting.appspot.com/parent/" + this.getParentId() + "/" + url;
+    this.Server = "https://yugma-ut.appspot.com/parent/" + this.getParentId() + "/" + url;
   }
 
 }

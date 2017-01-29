@@ -5,7 +5,7 @@ import { LoadingController, NavController, ToastController, AlertController, Men
 import { Configuration } from '../../service/app.constants';
 import { AuthService } from '../../service/auth.service';
 
-import { AllRequestPage } from '../all-request/request';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-login',
@@ -16,12 +16,11 @@ export class LoginPage {
 
   user: any;
 
-  numberSubmit: boolean = false;
-  otpSubmit: boolean = false;
-
   loading;
   username;
   password;
+
+  relationship1;
 
   constructor(public navCtrl: NavController,
               public authService: AuthService,
@@ -39,9 +38,15 @@ export class LoginPage {
     }
     this.presentLoadingDefault('Authenticating...');
     this.authService.verifyUser(data).subscribe(response => {
-      this.loading.dismiss();
-      this.navCtrl.setRoot(AllRequestPage);  // Set homepage to root
-      this.successToast();
+      this.authService.info(response).subscribe((res) => {
+        console.log("response from user info", res);
+        this.authService.storeData(res);
+        this.navCtrl.setRoot(TabsPage);  // Set homepage to root
+        this.loading.dismiss();
+        this.successToast();
+      }, (err) => {
+        console.log("err", err);
+      })
     }, (err) => {
       this.loading.dismiss();
       if (err.status === 400) {
@@ -75,6 +80,10 @@ export class LoginPage {
       position: 'bottom'
     });
     toast.present();
+  }
+
+  select(name) {
+    console.log("FDSFDS", name)
   }
 
 }

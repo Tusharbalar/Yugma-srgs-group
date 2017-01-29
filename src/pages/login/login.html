@@ -4,13 +4,13 @@
       <ion-col width-50>
         <ion-item>
           <ion-label>franchise</ion-label>
-          <ion-radio value="franchise" checked></ion-radio>
+          <ion-radio value="franchise" (click)="select('franchise')" checked></ion-radio>
         </ion-item>
       </ion-col>
       <ion-col width-50>
         <ion-item>
           <ion-label>srgs</ion-label>
-          <ion-radio value="srgs"></ion-radio>
+          <ion-radio value="srgs" (click)="select('srgs')"></ion-radio>
         </ion-item>
       </ion-col>
     </ion-row>

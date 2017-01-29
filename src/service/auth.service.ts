@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { ToastController } from 'ionic-angular';
 
 import { Observable } from 'rxjs/Observable';
@@ -37,16 +37,46 @@ export class AuthService {
   verifyUser(data: Object): Observable<any[]> {
     return this._http.post(this.serverUrl + "/login", data).map((res: Response) => {
       this.access_token = res.json().access_token;
+      return this.access_token;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
-  public storeParentData(parent) {
-    localStorage.setItem("id", parent.id);
-    localStorage.setItem("name", parent.name);
-    localStorage.setItem("email", parent.email);
-    localStorage.setItem("contactNo", parent.contactNo);
-    localStorage.setItem("students", JSON.stringify(parent.students));
-    localStorage.setItem("nickName", parent.nickName);
+  headers;
+
+  info(access_token) {
+
+    this.headers = new Headers({
+      'Content-Type' : 'application/json',
+      'Authorization' : 'Bearer ' + access_token
+    });
+
+    var options = new RequestOptions({
+      headers : this.headers
+    });
+
+    return this._http.get(this.serverUrl + "/management/info", options).map((res: Response) => {
+      console.log("DSADASDAS", res.json());
+      return res.json();
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+
+
+    // this.getUserInfo(access_token).subscribe(data => {
+    //   localStorage.setItem("access_token", access_token);
+    //   this.storeData(data);
+    // }, err => {
+    //   console.log("errrr", err);
+    // });
+  }
+
+  public storeData(data) {
+    localStorage.setItem("id", data.id);
+    localStorage.setItem("role", data.role);
+    localStorage.setItem("classTeacher", data.classTeacher);
+    localStorage.setItem("username", data.username);
+    localStorage.setItem("contactNo", data.contactNo);
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("name", data.name);
+    localStorage.setItem("nickName", data.nickName);
   }
 
 }
