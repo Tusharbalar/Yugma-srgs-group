@@ -26,6 +26,7 @@ export class AuthService {
   public hasLogin: boolean = false;
 
   isLoggedIn() {
+    console.log("QQQQQ", localStorage.getItem("access_token"))
     if (localStorage.getItem("access_token")) {
       this._configuration.getHeader();
       return !this.hasLogin;
@@ -56,16 +57,10 @@ export class AuthService {
 
     return this._http.get(this.serverUrl + "/management/info", options).map((res: Response) => {
       console.log("DSADASDAS", res.json());
+      localStorage.setItem("access_token", access_token);
       return res.json();
     }).catch((error: any) => Observable.throw(error || 'server error'));
 
-
-    // this.getUserInfo(access_token).subscribe(data => {
-    //   localStorage.setItem("access_token", access_token);
-    //   this.storeData(data);
-    // }, err => {
-    //   console.log("errrr", err);
-    // });
   }
 
   public storeData(data) {
