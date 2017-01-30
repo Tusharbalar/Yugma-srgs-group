@@ -19,20 +19,14 @@ export class Configuration {
     this.options = new RequestOptions({
       headers : this.headers
     });
-    this.getRole();
+    this.getUserId();
   }
 
   header() {
     return this.options;
   }
 
-  role;
   userId;
-
-  getRole() {
-    this.role = localStorage.getItem("role");
-    this.getUserId();
-  }
 
   getUserId() {
     this.userId = localStorage.getItem("id");
@@ -51,14 +45,11 @@ export class Configuration {
     }
   }
 
-  public Server: string = "https://yugma-ut.appspot.com";
-
-  setUrl(url) {
-    this.Server = "https://yugma-ut.appspot.com/parent/" + this.getParentId() + "/" + url;
-  }
+  public Server: string = "https://yugmatesting01.appspot.com";
 
   getRequestUrl() {
-    return "https://yugma-ut.appspot.com/" + this.role + "/" + this.userId + "/complaint";
+    this.userId = localStorage.getItem("id");
+    return "https://yugmatesting01.appspot.com/franchise/" + this.userId + "/request";
   }
 
 

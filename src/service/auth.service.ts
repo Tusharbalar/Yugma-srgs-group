@@ -53,9 +53,11 @@ export class AuthService {
     var options = new RequestOptions({
       headers : this.headers
     });
+    console.log("DASDADSDA", options)
 
-    return this._http.get(this.serverUrl + "/management/info", options).map((res: Response) => {
+    return this._http.get(this.serverUrl + "/franchise/info", options).map((res: Response) => {
       localStorage.setItem("access_token", access_token);
+      this._configuration.getHeader();
       return res.json();
     }).catch((error: any) => Observable.throw(error || 'server error'));
 

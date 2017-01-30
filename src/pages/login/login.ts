@@ -38,6 +38,7 @@ export class LoginPage {
     }
     this.presentLoadingDefault('Authenticating...');
     this.authService.verifyUser(data).subscribe(response => {
+      console.log("QQQQQQ", response)
       this.authService.info(response).subscribe((res) => {
         console.log("response from user info", res);
         this.authService.storeData(res);
