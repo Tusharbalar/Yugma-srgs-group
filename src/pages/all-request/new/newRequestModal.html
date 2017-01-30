@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons start>
       <button ion-button class="navBtnRight" (click)="dismiss()">
         <span color="light" showWhen="ios"><ion-icon name="close-circle"></ion-icon></span>
@@ -7,14 +7,14 @@
       </button>
     </ion-buttons>
     <ion-title>
-      NEW {{headerTitle | uppercase}}
+      NEW REQUEST
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="newComplaint csGrayBackground">
   <form name="newcomplaint" [formGroup]="newComplaint" (ngSubmit)="saveComplaint()" novalidate>
-    <ion-card *ngIf="standardId">
-      <ion-item padding>
+    <ion-card>
+      <ion-item>
         <ion-icon name="sad" item-left large color="primary"></ion-icon>
         <ion-label color="primary">Category</ion-label>
         <ion-select [(ngModel)]="category" formControlName="category" (ngModelChange)="setCategory(category)">
@@ -23,7 +23,7 @@
       </ion-item>
     </ion-card>
     <ion-card *ngIf="childCategories">
-      <ion-item padding>
+      <ion-item>
         <ion-icon name="ios-options-outline" item-left large color="primary"></ion-icon>
         <ion-label color="primary">SubCategory</ion-label>
         <ion-select [(ngModel)]="childCategory" formControlName="childCategory">
