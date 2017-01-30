@@ -5,6 +5,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { RequestService } from '../../service/request.service';
 import { CustomService } from '../../service/customService';
 import { newRequestModal } from './new/newRequestModal';
+import { ViewComponent } from './view/viewRequestModal';
 
 @Component({
   selector: 'all-request',
@@ -53,6 +54,11 @@ export class AllRequestPage {
     newRequest.present();
   }
 
+  viewRequest(request): void {
+    let viewRequest = this.modalCtrl.create(ViewComponent, {request: request});
+    viewRequest.present();
+  }
+
   doInfinite(infiniteScroll) {
     this.currentPage += 1;
     setTimeout(() => {
@@ -60,7 +66,6 @@ export class AllRequestPage {
         if (response.status === 204) {
           this.currentPage -= 1;
           infiniteScroll.complete();
-          infiniteScroll.enable(false);
           return;
         }
         this.allRequests = this.allRequests.concat(response.json());

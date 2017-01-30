@@ -11,7 +11,7 @@
   </ion-fab>
   <ion-list>
     <ion-item-sliding *ngFor="let complaint of allRequests" class="new-list" #slidingItem>
-      <a ion-item ion-item detail-push detail-none href="#" (click)="viewComplaint(complaint)" [style.border-left-color]="complaint.statusColor">
+      <a ion-item ion-item detail-push detail-none href="#" (click)="viewRequest(complaint)" [style.border-left-color]="complaint.statusColor">
         <nl-list-view [complaint]="complaint"></nl-list-view>
       </a>
       <ion-item-options side="right">

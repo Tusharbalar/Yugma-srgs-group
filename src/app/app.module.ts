@@ -13,6 +13,7 @@ import { Configuration } from '../service/app.constants';
 import { ListView } from '../customComponent/list/listview.component';
 import { CustomNavbar } from '../customComponent/navbar.component.ts';
 
+import { ViewComponent } from '../pages/all-request/view/viewRequestModal';
 import { newRequestModal } from '../pages/all-request/new/newRequestModal';
 import { CustomService } from '../service/customService';
 import { MomentModule } from 'angular2-moment/moment.module';
@@ -39,7 +40,8 @@ import { ParentInfo } from '../service/parentInfo';
     ListViewSatisfiedButton,
     CommentModal,
     ModalNavbarComponent,
-    newRequestModal
+    newRequestModal,
+    ViewComponent
   ],
   imports: [
     MomentModule,
@@ -60,7 +62,8 @@ import { ParentInfo } from '../service/parentInfo';
     ListViewSatisfiedButton,
     CommentModal,
     ModalNavbarComponent,
-    newRequestModal
+    newRequestModal,
+    ViewComponent
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })
