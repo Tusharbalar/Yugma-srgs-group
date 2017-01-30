@@ -26,4 +26,34 @@ export class RequestService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
+  public closeComplaint(complaintId, complaintReason) {
+    return this._http.put(this.serverUrl + "/" + complaintId + "/close", complaintReason, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
+  public satisfiedComplaint(complaintId) {
+    return this._http.put(this.serverUrl + "/" + complaintId + "/satisfied", {}, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
+  public reopenComplaint(complaintId, reopenData) {
+    return this._http.put(this.serverUrl + "/" + complaintId + "/reopen", reopenData, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
+  public postComment(complaintId, comment) {
+    return this._http.post(this.serverUrl + "/" + complaintId + "/comment", comment, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
+  public getComments(complaintId) {
+    return this._http.get(this.serverUrl + "/" + complaintId + "/comment", this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
 }

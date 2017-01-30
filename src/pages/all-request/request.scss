@@ -1,6 +1,3 @@
-page-home {
-
-}
 $csBoardColor:#3f3f3f;
 ion-note {
     ion-icon {
@@ -10,12 +7,12 @@ ion-note {
         top: -1px;
         position: relative;
     }
-    font-size: 12px;
+    font-size: $font-sm;
     align-self: flex-start;
 }
 .complaint-list,
 .suggestion-list {
-    // background: $csBackgroundColor;
+    background: $csBackgroundColor;
     ion-item-sliding {
         h3 {
             text-overflow: ellipsis;
@@ -23,12 +20,12 @@ ion-note {
         }
         a {
             .item-inner {
-                border-left-color: inherit;
+                border-left-color: $inherit;
                 .input-wrapper {
-                    border-left-color: inherit;
+                    border-left-color: $inherit;
                     ion-label {
                         border-left: 3px solid;
-                        border-left-color: inherit;
+                        border-left-color: $inherit;
                         padding: 0px 5px 0px 10px;
                     }
                 }
@@ -44,7 +41,7 @@ ion-note {
     }
 }
 .view-complaint {
-    // background: $csBackgroundColor;
+    background: $csBackgroundColor;
     ion-card {
         ion-item {
             h2 {
@@ -66,11 +63,11 @@ ion-note {
         height: 1px;
     }
     span {
-        position: absolute;
+        position: $absolute;
         top: 12px;
         left: 30px;
         font-size: 1.4rem;
-        // background: $background-color;
+        background: $background-color;
         font-weight: 600;
         padding: 0px 5px 0px 5px;
     }
@@ -88,7 +85,7 @@ ion-note {
         margin: 0 0 2px;
         font-size: 1.4rem;
         font-weight: normal;
-        // color: $csBoardColor;
+        color: $csBoardColor;
     }
 }
 .new-complaint ion-item ion-badge {
@@ -104,7 +101,7 @@ ion-note {
 }
 div {
     .csSlideClose {
-        // background-color: $color0;
+        background-color: $color0;
     }
 }
 .csBottom-card {
@@ -127,7 +124,4 @@ div {
 }
 .csInProgress {
     border-bottom: none !important;
-}
-div [padding]{
-    margin-top: -15px;
 }
