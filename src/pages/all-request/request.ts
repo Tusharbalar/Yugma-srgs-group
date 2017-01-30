@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, ActionSheetController } from 'ionic-angular';
 
 import { RequestService } from '../../service/request.service';
 import { CustomService } from '../../service/customService';
@@ -20,7 +20,9 @@ export class AllRequestPage {
   EmptyRequests = false;
 
   constructor(public requestService: RequestService,
+              public actionSheetCtrl: ActionSheetController,
               public modalCtrl: ModalController,
+              public navCtrl: NavController,
               public cs: CustomService) {
 
   }
@@ -93,5 +95,27 @@ export class AllRequestPage {
     }, 1000);
   }
 
-
+  logout() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Are you sure you want to logout ?',
+      buttons: [
+        {
+          text: 'Submit',
+          icon: 'ios-paper-outline',
+          handler: () => {
+            localStorage.clear();
+            this.navCtrl.setRoot(AllRequestPage);
+          }
+        },{
+          text: 'Cancel',
+          icon: 'md-close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
 }

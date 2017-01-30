@@ -74,4 +74,13 @@ export class AuthService {
     localStorage.setItem("nickName", data.nickName);
   }
 
+  forgotPassword(username: string) {
+    let data = {
+      username: username
+    }
+    return this._http.put(this.serverUrl + "/forgot-password", data).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
 }

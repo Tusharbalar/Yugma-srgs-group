@@ -25,6 +25,8 @@ import { CommentModal } from '../customComponent/commentModal.ts';
 import { ModalNavbarComponent } from '../customComponent/modal.navbar.component';
 import { ParentInfo } from '../service/parentInfo';
 
+import { ForgotPasswordModal } from '../pages/login/forgotPassword';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -41,7 +43,8 @@ import { ParentInfo } from '../service/parentInfo';
     CommentModal,
     ModalNavbarComponent,
     newRequestModal,
-    ViewComponent
+    ViewComponent,
+    ForgotPasswordModal
   ],
   imports: [
     MomentModule,
@@ -63,7 +66,8 @@ import { ParentInfo } from '../service/parentInfo';
     CommentModal,
     ModalNavbarComponent,
     newRequestModal,
-    ViewComponent
+    ViewComponent,
+    ForgotPasswordModal
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })

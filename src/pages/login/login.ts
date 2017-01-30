@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import { LoadingController, NavController, ToastController, AlertController, MenuController } from 'ionic-angular';
+import { LoadingController, NavController, ToastController, AlertController, MenuController, ModalController } from 'ionic-angular';
 
 import { Configuration } from '../../service/app.constants';
 import { AuthService } from '../../service/auth.service';
-
-import { TabsPage } from '../tabs/tabs';
+import { Push } from 'ionic-native';
+import { AllRequestPage } from '../all-request/request';
+import { ForgotPasswordModal } from './forgotPassword';
 
 @Component({
   selector: 'page-login',
@@ -25,6 +26,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
               public authService: AuthService,
               public loadingCtrl: LoadingController,
+              public modalCtrl: ModalController,
               public configuration: Configuration,
               public menuCtrl: MenuController,
               public toastCtrl: ToastController,
@@ -42,7 +44,8 @@ export class LoginPage {
       this.authService.info(response).subscribe((res) => {
         console.log("response from user info", res);
         this.authService.storeData(res);
-        this.navCtrl.setRoot(TabsPage);  // Set homepage to root
+        this.setNotificationToken();
+        this.navCtrl.setRoot(AllRequestPage);  // Set homepage to root
         this.loading.dismiss();
         this.successToast();
       }, (err) => {
@@ -83,8 +86,25 @@ export class LoginPage {
     toast.present();
   }
 
-  select(name) {
-    console.log("FDSFDS", name)
+  setNotificationToken() {
+    let confirmAlert = this.alertCtrl.create({
+      title: 'Would you like to receive notification ?',
+      message: "",
+      buttons: [{
+        text: 'NO',
+        role: 'cancel'
+      }, {
+        text: 'YES',
+        handler: () => {
+        }
+      }]
+    });
+    confirmAlert.present();
+  }
+
+  openModal() {
+    let viewComplaint = this.modalCtrl.create(ForgotPasswordModal);
+    viewComplaint.present();
   }
 
 }
