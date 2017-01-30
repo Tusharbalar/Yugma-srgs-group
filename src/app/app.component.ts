@@ -3,6 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { AllRequestPage } from '../pages/all-request/request';
 
 // import component
 import { LoginPage } from '../pages/login/login';
@@ -29,7 +30,7 @@ export class MyApp {
   hasLoggedIn() {
     console.log("DSADSDASDA", this.authService.isLoggedIn())
     if (this.authService.isLoggedIn()) {
-      this.rootPage = TabsPage;
+      this.rootPage = AllRequestPage;
     } else {
       this.rootPage = LoginPage;
     }
