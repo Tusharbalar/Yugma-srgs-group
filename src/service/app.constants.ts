@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class Configuration {
@@ -16,10 +16,27 @@ export class Configuration {
       'Content-Type' : 'application/json',
       'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
     });
+    this.options = new RequestOptions({
+      headers : this.headers
+    });
+    this.getRole();
   }
 
   header() {
-    return this.headers;
+    return this.options;
+  }
+
+  role;
+  userId;
+
+  getRole() {
+    this.role = localStorage.getItem("role");
+    this.getUserId();
+  }
+
+  getUserId() {
+    this.userId = localStorage.getItem("id");
+    return this.userId;
   }
 
   public getParentId(): string {
@@ -39,5 +56,10 @@ export class Configuration {
   setUrl(url) {
     this.Server = "https://yugma-ut.appspot.com/parent/" + this.getParentId() + "/" + url;
   }
+
+  getRequestUrl() {
+    return "https://yugma-ut.appspot.com/" + this.role + "/" + this.userId + "/complaint";
+  }
+
 
 }

@@ -1,9 +1,25 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>Requests</ion-title>
-  </ion-navbar>
+<ion-header class="complaints">
+  <nl-navbar [title]="title"></nl-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>All Requests</h2>
+<ion-content class="complaint-list csMargin">
+  <ion-refresher (ionRefresh)="requestRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let complaint of allRequests" class="new-list" #slidingItem>
+      <a ion-item ion-item detail-push detail-none href="#" (click)="viewComplaint(complaint)" [style.border-left-color]="complaint.statusColor">
+        <nl-list-view [complaint]="complaint"></nl-list-view>
+      </a>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngIf="EmptyRequests">
+      <h3> NO REQUESTS </h3>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

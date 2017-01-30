@@ -7,7 +7,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 
 import { AuthService } from '../service/auth.service';
+import { RequestService } from '../service/request.service';
 import { Configuration } from '../service/app.constants';
+
+import { ListView } from '../customComponent/list/listview.component';
+import { CustomNavbar } from '../customComponent/navbar.component.ts';
+
+import { MomentModule } from 'angular2-moment/moment.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +21,12 @@ import { Configuration } from '../service/app.constants';
     closeRequestPage,
     AllRequestPage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    ListView,
+    CustomNavbar
   ],
   imports: [
+    MomentModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -26,8 +35,10 @@ import { Configuration } from '../service/app.constants';
     closeRequestPage,
     AllRequestPage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    ListView,
+    CustomNavbar
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService]
 })
 export class AppModule {}
