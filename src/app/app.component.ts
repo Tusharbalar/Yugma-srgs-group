@@ -28,7 +28,6 @@ export class MyApp {
   }
 
   hasLoggedIn() {
-    console.log("DSADSDASDA", this.authService.isLoggedIn())
     if (this.authService.isLoggedIn()) {
       this.rootPage = AllRequestPage;
     } else {

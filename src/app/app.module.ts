@@ -13,6 +13,7 @@ import { Configuration } from '../service/app.constants';
 import { ListView } from '../customComponent/list/listview.component';
 import { CustomNavbar } from '../customComponent/navbar.component.ts';
 
+import { CustomService } from '../service/customService';
 import { MomentModule } from 'angular2-moment/moment.module';
 
 @NgModule({
@@ -39,6 +40,6 @@ import { MomentModule } from 'angular2-moment/moment.module';
     ListView,
     CustomNavbar
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService]
 })
 export class AppModule {}
