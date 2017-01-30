@@ -17,7 +17,7 @@ import { CustomService } from '../service/customService';
         <h3>No Comments</h3>
       </ion-list>
       <ion-spinner class="circle-spinner" *ngIf="!hasData"></ion-spinner>
-      <div  class="message-box csTransparent" *ngFor="let m of comments" [ngClass]="{'mine': m.parentId != null}" no-margin>
+      <div  class="message-box csTransparent" *ngFor="let m of comments" [ngClass]="{'mine': m.employeeId === null}" no-margin>
         <div no-padding class="csMyComment">
           <h3>{{ m.comment }}</h3>
         </div>
