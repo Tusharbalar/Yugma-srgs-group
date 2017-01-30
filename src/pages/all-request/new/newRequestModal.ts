@@ -65,7 +65,8 @@ export class newRequestModal implements OnInit {
       category: ['', Validators.required],
       childCategory: ['', Validators.required],
       title: ['', [Validators.required, Validators.maxLength(50)]],
-      description: ['', [Validators.required, Validators.maxLength(200)]]
+      description: ['', [Validators.required, Validators.maxLength(200)]],
+      dueDate: ['', [Validators.required]]
     });
   }
 

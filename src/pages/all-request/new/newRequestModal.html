@@ -47,6 +47,12 @@
       </ion-item>
       <ion-badge class="csFiftyLimit"><span>{{200 - newComplaint.value.description.length}}</span></ion-badge>
     </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-label style="color:grey">Due Date</ion-label>
+        <ion-datetime max="2019-10-31" displayFormat="DD MMM YYYY" formControlName="dueDate"></ion-datetime>
+      </ion-item>
+    </ion-card>
     <div padding>
       <button ion-button full type="submit" [disabled]="newComplaint.invalid">Submit</button>
     </div>
