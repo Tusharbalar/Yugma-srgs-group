@@ -6,7 +6,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
+  <ion-fab top right edge>
+    <button ion-fab (click)="newRequest()" color="cool"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
   <ion-list>
     <ion-item-sliding *ngFor="let complaint of allRequests" class="new-list" #slidingItem>
       <a ion-item ion-item detail-push detail-none href="#" (click)="viewComplaint(complaint)" [style.border-left-color]="complaint.statusColor">

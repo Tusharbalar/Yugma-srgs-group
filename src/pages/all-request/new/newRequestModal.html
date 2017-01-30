@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button class="navBtnRight" (click)="dismiss()">
+        <span color="light" showWhen="ios"><ion-icon name="close-circle"></ion-icon></span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      NEW {{headerTitle | uppercase}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="newComplaint csGrayBackground">
+  <form name="newcomplaint" [formGroup]="newComplaint" (ngSubmit)="saveComplaint()" novalidate>
+    <ion-card *ngIf="standardId">
+      <ion-item padding>
+        <ion-icon name="sad" item-left large color="primary"></ion-icon>
+        <ion-label color="primary">Category</ion-label>
+        <ion-select [(ngModel)]="category" formControlName="category" (ngModelChange)="setCategory(category)">
+          <ion-option *ngFor="let category of categories" [value]="category">{{category.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <ion-card *ngIf="childCategories">
+      <ion-item padding>
+        <ion-icon name="ios-options-outline" item-left large color="primary"></ion-icon>
+        <ion-label color="primary">SubCategory</ion-label>
+        <ion-select [(ngModel)]="childCategory" formControlName="childCategory">
+          <ion-option *ngFor="let childCategory of childCategories" [value]="childCategory.id">
+            {{childCategory.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item class="csTransparent">
+        <ion-label stacked>Title (max. 50)</ion-label>
+        <ion-textarea rows="2" class="csInput-title" formControlName="title" maxlength="50"> </ion-textarea>
+      </ion-item>
+      <ion-badge class="csFiftyLimit"><span>{{50 - newComplaint.value.title.length}}</span></ion-badge>
+    </ion-card>
+    <ion-card>
+      <ion-item class="csTransparent">
+        <ion-label stacked>Description</ion-label>
+        <ion-textarea class="csInput-title" rows="8" formControlName="description" maxlength="200"></ion-textarea>
+      </ion-item>
+      <ion-badge class="csFiftyLimit"><span>{{200 - newComplaint.value.description.length}}</span></ion-badge>
+    </ion-card>
+    <div padding>
+      <button ion-button full type="submit" [disabled]="newComplaint.invalid">Submit</button>
+    </div>
+  </form>
+</ion-content>

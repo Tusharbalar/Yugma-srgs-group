@@ -56,4 +56,16 @@ export class RequestService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
+  public getCategories() {
+    return this._http.get(this.serverUrl + "/category", this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
+  public saveRequest(complaintData): any {
+    return this._http.post(this.serverUrl, complaintData, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
 }

@@ -13,6 +13,7 @@ import { Configuration } from '../service/app.constants';
 import { ListView } from '../customComponent/list/listview.component';
 import { CustomNavbar } from '../customComponent/navbar.component.ts';
 
+import { newRequestModal } from '../pages/all-request/new/newRequestModal';
 import { CustomService } from '../service/customService';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { ListViewCloseButton,
@@ -21,6 +22,7 @@ import { ListViewCloseButton,
          ListViewCommentButton } from '../customComponent/list/edit-cs-status-and-comment.component';
 import { CommentModal } from '../customComponent/commentModal.ts';
 import { ModalNavbarComponent } from '../customComponent/modal.navbar.component';
+import { ParentInfo } from '../service/parentInfo';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ModalNavbarComponent } from '../customComponent/modal.navbar.component'
     ListViewReopenButton,
     ListViewSatisfiedButton,
     CommentModal,
-    ModalNavbarComponent
+    ModalNavbarComponent,
+    newRequestModal
   ],
   imports: [
     MomentModule,
@@ -56,8 +59,9 @@ import { ModalNavbarComponent } from '../customComponent/modal.navbar.component'
     ListViewReopenButton,
     ListViewSatisfiedButton,
     CommentModal,
-    ModalNavbarComponent
+    ModalNavbarComponent,
+    newRequestModal
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })
 export class AppModule {}

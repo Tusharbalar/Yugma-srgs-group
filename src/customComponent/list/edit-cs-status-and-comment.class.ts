@@ -66,7 +66,7 @@ export class EditComplaintStatusAndComment {
   openReopenModal(complaint): void {
     this.complaint = complaint;
     let prompt = this.alertCtrl.create({
-      title: 'If you are not happy with the complaint resolution then reopen complaint',
+      title: 'If you are not happy with the request resolution then reopen complaint',
       message: "",
       inputs: [{
         name: 'comment',
@@ -121,7 +121,7 @@ export class EditComplaintStatusAndComment {
         text: 'Save',
         handler: data => {
           if (data.comment === "") {
-            this.nl.showToast("Please menation why you want to close complaint");
+            this.nl.showToast("Please menation why you want to close request");
             return;
           }
           this.closeActionSheet(complaint, data);
@@ -153,7 +153,7 @@ export class EditComplaintStatusAndComment {
   openSatisfiedModal(complaint): void {
     let prompt = this.alertCtrl.create({
       title: 'Complaint Satisfied ?',
-      message: "If you are happy with the complaint resolution then click on satisfied button",
+      message: "If you are happy with the request resolution then click on satisfied button",
       buttons: [{
         text: 'Cancel',
         handler: data => {

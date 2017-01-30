@@ -88,6 +88,7 @@ export class CommentModal implements OnInit {
   showToastMessage() {
     let toast = this.toastCtrl.create({
       message: "You can't comment on it any more, may be your complaint status is closed or satisfied",
+      duration: 3000,
       showCloseButton: true,
       closeButtonText: "Ok",
       dismissOnPageChange: true

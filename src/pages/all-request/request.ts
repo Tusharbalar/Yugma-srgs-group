@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 import { RequestService } from '../../service/request.service';
 import { CustomService } from '../../service/customService';
+import { newRequestModal } from './new/newRequestModal';
 
 @Component({
   selector: 'all-request',
@@ -18,6 +19,7 @@ export class AllRequestPage {
   EmptyRequests = false;
 
   constructor(public requestService: RequestService,
+              public modalCtrl: ModalController,
               public cs: CustomService) {
 
   }
@@ -37,6 +39,18 @@ export class AllRequestPage {
       this.cs.hideLoader();
       this.cs.errMessage();
     })
+  }
+
+  newRequest(): void {
+    let newRequest = this.modalCtrl.create(newRequestModal);
+    newRequest.onDidDismiss((newRequest) => {
+      console.log("DSa", newRequest)
+      if (!newRequest) { return; }
+      if (!this.allRequests) { this.allRequests = []; }
+      this.EmptyRequests = false;
+      this.allRequests.unshift(newRequest);
+    });
+    newRequest.present();
   }
 
   doInfinite(infiniteScroll) {
