@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class Configuration {
@@ -50,6 +51,22 @@ export class Configuration {
   getRequestUrl() {
     this.userId = localStorage.getItem("id");
     return "https://yugmatesting01.appspot.com/franchise/" + this.userId + "/request";
+  }
+
+  tokenUpdate(tokenId) {
+    const notificationToken = {
+      notificationToken: tokenId
+    }
+    this.headers = new Headers({
+      'Content-Type' : 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
+    });
+    this.options = new RequestOptions({
+      headers : this.header()
+    });
+    return this.http.put(this.Server + "/franchise/" + this.getParentId(), notificationToken, this.options).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
 

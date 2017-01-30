@@ -44,10 +44,10 @@ export class LoginPage {
       this.authService.info(response).subscribe((res) => {
         console.log("response from user info", res);
         this.authService.storeData(res);
-        this.setNotificationToken();
         this.navCtrl.setRoot(AllRequestPage);  // Set homepage to root
         this.loading.dismiss();
         this.successToast();
+        this.setNotificationToken();
       }, (err) => {
         console.log("err", err);
       })

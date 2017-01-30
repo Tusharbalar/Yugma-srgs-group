@@ -6,6 +6,7 @@ import { RequestService } from '../../service/request.service';
 import { CustomService } from '../../service/customService';
 import { newRequestModal } from './new/newRequestModal';
 import { ViewComponent } from './view/viewRequestModal';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'all-request',
@@ -104,7 +105,7 @@ export class AllRequestPage {
           icon: 'ios-paper-outline',
           handler: () => {
             localStorage.clear();
-            this.navCtrl.setRoot(AllRequestPage);
+            this.navCtrl.setRoot(LoginPage);
           }
         },{
           text: 'Cancel',
