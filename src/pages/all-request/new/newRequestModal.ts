@@ -156,18 +156,15 @@ export class newRequestModal implements OnInit {
       console.log("Complaint invalid")
     } else {
 
-      let newComplaint = _.extend(this.newComplaint.value, {
-        againstCategoryId: this.newComplaint.value.category.id,
-        studentId: this.newComplaint.value.student.id
-      });
-      newComplaint = _.pick(newComplaint, function(value, key, object) {
+      let newComplaint = _.pick(this.newComplaint.value, function(value, key, object) {
         return _.isNumber(value) || _.isString(value);
       });
-      newComplaint.anonymous = this.newComplaint.value.anonymous;
       if (newComplaint.childCategory) {
         newComplaint.againstCategoryId = newComplaint.childCategory;
         delete newComplaint.childCategory;
       }
+      newComplaint.dueDate = this.newComplaint.value.dueDate;
+      console.log("QQQQQQQQQQQQ", newComplaint)
       this.presentActionSheet(newComplaint);
 
     }

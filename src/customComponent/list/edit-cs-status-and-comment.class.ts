@@ -66,7 +66,7 @@ export class EditComplaintStatusAndComment {
   openReopenModal(complaint): void {
     this.complaint = complaint;
     let prompt = this.alertCtrl.create({
-      title: 'If you are not happy with the request resolution then reopen complaint',
+      title: 'If you are not happy with the request resolution then reopen request',
       message: "",
       inputs: [{
         name: 'comment',
@@ -152,7 +152,7 @@ export class EditComplaintStatusAndComment {
 
   openSatisfiedModal(complaint): void {
     let prompt = this.alertCtrl.create({
-      title: 'Complaint Satisfied ?',
+      title: 'Request Satisfied ?',
       message: "If you are happy with the request resolution then click on satisfied button",
       buttons: [{
         text: 'Cancel',
