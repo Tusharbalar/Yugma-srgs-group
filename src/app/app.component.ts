@@ -15,6 +15,8 @@ import { AuthService } from '../service/auth.service';
 export class MyApp {
   rootPage;
 
+  pages: Array<{title: string, icon: any, url: string}>;
+
   constructor(platform: Platform,
               public authService: AuthService) {
     platform.ready().then(() => {
@@ -23,6 +25,15 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
+
+    this.pages = [
+      { title: 'Dashboard', icon: 'ios-home-outline', url: 'dashboard' },
+      { title: 'Complaints',  icon: 'ios-sad-outline', url: 'complaint' },
+      { title: 'Suggestions',  icon: 'md-bulb', url: 'suggestion' },
+      { title: 'Appreciations',  icon: 'ios-thumbs-up-outline', url: 'appreciation' },
+      { title: 'Event',  icon: 'ios-calendar-outline', url: 'planner' }
+    ];
+
     this.hasLoggedIn();
   }
 
