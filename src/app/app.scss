@@ -15,6 +15,8 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+@import "cornerStone.scss";
+
 $transparent:transparent;
 $icoSize : 2.4rem;
 $full-width : 100%;
@@ -25,3 +27,94 @@ $font-sm : 12px;
 $font-md : 16px;
 $font-lg : 18px;
 $inherit : inherit;
+
+// Custom Navbar Style
+.navBtnRight {
+  height: 2.0em;
+  box-shadow: none;
+  ion-icon {
+    font-size: 2em;
+  }
+}
+
+// .button-md.activated {
+//   background-color: transparent;
+//   box-shadow: none;
+// }
+
+.item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input {
+  margin-left: 8px;
+}
+
+ion-navbar.toolbar.toolbar-ios-primary.statusbar-padding {
+  padding-top: 20px;
+}
+
+.toolbar-title.toolbar-title-ios {
+  margin-top: 17px;
+}
+
+ion-toolbar.toolbar.toolbar-ios.toolbar-ios-primary {
+  padding-top: 20px;
+}
+
+.bigIcon{
+  font-size: 120px;
+    color: #6987ac;
+    width: 103px;
+    height: 114px;
+}
+
+
+.csBlueTheme{
+  color: #fff;
+}
+
+.csBlueColor{
+  @extend .csBackground;
+  background-image: csBackgroundSvg('dashBoard.svg');
+  font: {
+    size: 19px;
+    style: italic;
+  }
+}
+
+ion-toolbar{
+  .toolbar{
+    .toolbar-ios{
+      .toolbar-ios-primary {
+        padding-top: 20px;
+      }
+    }
+    .toolbar-md{
+      .toolbar-md-primary {
+        padding-top: 20px;
+      }
+    }
+    .toolbar-wp{
+      .toolbar-wp-primary {
+        padding-top: 20px;
+      }
+    }
+  }
+}
+
+/* CS Theme */
+.csLightText{
+  color:#fff;
+}
+
+.csStrip{
+    background:$csStripColor;
+}
+
+.csBlueColor{
+  background:$csDarkStrip;
+  .item-ios[detail-push] .item-inner, button.item-ios:not([detail-none]) .item-inner, a.item-ios:not([detail-none]) .item-inner{
+  }
+}
+
+.csSelected{
+  background:$color1;
+  color:white;
+}

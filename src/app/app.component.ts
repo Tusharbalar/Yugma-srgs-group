@@ -18,6 +18,7 @@ export class MyApp {
 
   rootPage;
   selectedPage:string;
+  name: string;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -44,6 +45,7 @@ export class MyApp {
   hasLoggedIn() {
     if (this.authService.isLoggedIn()) {
       this.rootPage = DashboardComponent;
+      this.getUserName();
     } else {
       this.rootPage = LoginPage;
     }
@@ -53,6 +55,10 @@ export class MyApp {
     this.selectedPage = page.title;
     this._configuration.setUrl(page.url);
     this.nav.setRoot(page.component);
+  }
+
+  getUserName() {
+    this.name = localStorage.getItem("name");
   }
 
 }
