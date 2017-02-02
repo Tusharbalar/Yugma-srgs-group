@@ -5,14 +5,34 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class Configuration {
 
+  headers;
+  options;
+  role;
+  userId;
+
   constructor(public http: Http) {
 
   }
 
-  headers;
-  options;
+  public Server: string = "https://yugmatesting01.appspot.com";
 
-  getHeader() {
+  // set access_token after user login
+  setAccessToken() {
+    this.getRole();
+    this.setHeader();
+  }
+
+  getRole() {
+    this.role = localStorage.getItem("role");
+    this.getUserId();
+  }
+
+  getUserId() {
+    this.userId = localStorage.getItem("id");
+    return this.userId;
+  }
+
+  setHeader() {
     this.headers = new Headers({
       'Content-Type' : 'application/json',
       'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
@@ -20,11 +40,9 @@ export class Configuration {
     this.options = new RequestOptions({
       headers : this.headers
     });
-    this.getUserId();
   }
 
   header() {
-    console.log("DSADSADSAD", localStorage.getItem("access_token"))
     this.headers = new Headers({
       'Content-Type' : 'application/json',
       'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
@@ -35,47 +53,8 @@ export class Configuration {
     return this.options;
   }
 
-  userId;
-
-  getUserId() {
-    this.userId = localStorage.getItem("id");
-    return this.userId;
-  }
-
-  public getParentId(): string {
-    if (localStorage.getItem("id") != null) {
-      return localStorage.getItem("id");
-    }
-  }
-
-  public getAccessToken(): string {
-    if (localStorage.getItem("access_token") != null) {
-      return localStorage.getItem("access_token");
-    }
-  }
-
-  public Server: string = "https://yugmatesting01.appspot.com";
-
   getRequestUrl() {
-    this.userId = localStorage.getItem("id");
-    return "https://yugmatesting01.appspot.com/franchise/" + this.userId + "/request";
+    return "https://yugmatesting01.appspot.com/" + this.role + "/" + this.userId + "/request";
   }
-
-  tokenUpdate(tokenId) {
-    const notificationToken = {
-      notificationToken: tokenId
-    }
-    this.headers = new Headers({
-      'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
-    });
-    this.options = new RequestOptions({
-      headers : this.header()
-    });
-    return this.http.put(this.Server + "/franchise/" + this.getParentId(), notificationToken, this.options).map((res: Response) => {
-      return res;
-    }).catch((error: any) => Observable.throw(error || 'server error'));
-  }
-
 
 }

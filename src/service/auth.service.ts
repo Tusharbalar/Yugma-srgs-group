@@ -27,7 +27,7 @@ export class AuthService {
 
   isLoggedIn() {
     if (localStorage.getItem("access_token")) {
-      this._configuration.getHeader();
+      this._configuration.setAccessToken();
       return !this.hasLogin;
     } else {
       return this.hasLogin;
@@ -38,7 +38,6 @@ export class AuthService {
     return this._http.post(this.serverUrl + "/login", data).map((res: Response) => {
       this.access_token = res.json().access_token;
       localStorage.setItem("access_token", this.access_token);
-      console.log("access_token", this.access_token)
       return this.access_token;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
@@ -55,11 +54,10 @@ export class AuthService {
     var options = new RequestOptions({
       headers : this.headers
     });
-    console.log("DASDADSDA", options)
 
     return this._http.get(this.serverUrl + "/management/info", options).map((res: Response) => {
       localStorage.setItem("access_token", access_token);
-      this._configuration.getHeader();
+      this._configuration.setAccessToken();
       return res.json();
     }).catch((error: any) => Observable.throw(error || 'server error'));
 
@@ -68,7 +66,6 @@ export class AuthService {
   public storeData(data) {
     localStorage.setItem("id", data.id);
     localStorage.setItem("role", data.role);
-    localStorage.setItem("classTeacher", data.classTeacher);
     localStorage.setItem("username", data.username);
     localStorage.setItem("contactNo", data.contactNo);
     localStorage.setItem("email", data.email);

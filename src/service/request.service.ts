@@ -19,9 +19,13 @@ export class RequestService {
 
   }
 
-  getRequests(pageNo): Observable<any> {
+  getHeader() {
     this.serverUrl = this._configuration.getRequestUrl();
     this.header = this._configuration.header();
+  }
+
+  getRequests(pageNo): Observable<any> {
+    this.getHeader();
     return this._http.get(this.serverUrl + "/page/" + pageNo, this.header).map((res: Response) => {
       return res;
     }).catch((error: any) => Observable.throw(error || 'server error'));
