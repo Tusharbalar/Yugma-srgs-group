@@ -1,26 +1,12 @@
-<ion-header class="complaints">
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title >
-      <span>REQUESTS</span>
-    </ion-title>
-    <ion-buttons end>
-      <button type="button" ion-button icon-only (click)="logout()">
-        <ion-icon name="log-out"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+<ion-header>
+  <nl-navbar [title]="title">
+  </nl-navbar>
 </ion-header>
 
 <ion-content class="complaint-list csMargin">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-fab bottom right>
-    <button ion-fab (click)="newRequest()" color="primary"><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
   <ion-list>
     <ion-item-sliding *ngFor="let complaint of allRequests" class="new-list" #slidingItem>
       <a ion-item ion-item detail-push detail-none href="#" (click)="viewRequest(complaint)" [style.border-left-color]="complaint.statusColor">

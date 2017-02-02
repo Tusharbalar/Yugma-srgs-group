@@ -8,6 +8,8 @@ import { NavController } from 'ionic-angular';
 })
 export class closeRequestPage {
 
+  title = "Requests";
+  
   constructor(public navCtrl: NavController) {
 
   }
