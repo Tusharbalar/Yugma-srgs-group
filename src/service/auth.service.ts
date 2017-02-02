@@ -37,6 +37,8 @@ export class AuthService {
   verifyUser(data: Object): Observable<any[]> {
     return this._http.post(this.serverUrl + "/login", data).map((res: Response) => {
       this.access_token = res.json().access_token;
+      localStorage.setItem("access_token", this.access_token);
+      console.log("access_token", this.access_token)
       return this.access_token;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
@@ -47,7 +49,7 @@ export class AuthService {
 
     this.headers = new Headers({
       'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer ' + access_token
+      'Authorization' : 'Bearer ' + this.access_token
     });
 
     var options = new RequestOptions({
@@ -55,7 +57,7 @@ export class AuthService {
     });
     console.log("DASDADSDA", options)
 
-    return this._http.get(this.serverUrl + "/franchise/info", options).map((res: Response) => {
+    return this._http.get(this.serverUrl + "/management/info", options).map((res: Response) => {
       localStorage.setItem("access_token", access_token);
       this._configuration.getHeader();
       return res.json();

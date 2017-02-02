@@ -24,6 +24,14 @@ export class Configuration {
   }
 
   header() {
+    console.log("DSADSADSAD", localStorage.getItem("access_token"))
+    this.headers = new Headers({
+      'Content-Type' : 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
+    });
+    this.options = new RequestOptions({
+      headers : this.headers
+    });
     return this.options;
   }
 

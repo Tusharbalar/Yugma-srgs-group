@@ -4,8 +4,7 @@ import { LoadingController, NavController, ToastController, AlertController, Men
 
 import { Configuration } from '../../service/app.constants';
 import { AuthService } from '../../service/auth.service';
-import { Push } from 'ionic-native';
-import { AllRequestPage } from '../all-request/request';
+import { TabsPage } from '../tabs/tabs';
 import { ForgotPasswordModal } from './forgotPassword';
 
 @Component({
@@ -44,7 +43,7 @@ export class LoginPage {
       this.authService.info(response).subscribe((res) => {
         console.log("response from user info", res);
         this.authService.storeData(res);
-        this.navCtrl.setRoot(AllRequestPage);  // Set homepage to root
+        this.navCtrl.setRoot(TabsPage);  // Set homepage to root
         this.loading.dismiss();
         this.successToast();
         this.setNotificationToken();

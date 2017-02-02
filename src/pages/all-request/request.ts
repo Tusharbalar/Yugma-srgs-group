@@ -31,7 +31,7 @@ export class AllRequestPage {
   ionViewWillEnter() {
     this.cs.showLoader();
     this.requestService.getRequests(this.currentPage).subscribe(res => {
-      if (res.status === 402) {
+      if (res.status === 204) {
         console.log("No data");
         this.EmptyRequests = true;
       } else {
