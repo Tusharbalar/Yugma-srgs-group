@@ -10,6 +10,8 @@ import { AuthService } from '../service/auth.service';
 import { RequestService } from '../service/request.service';
 import { Configuration } from '../service/app.constants';
 
+import { DashboardComponent } from '../pages/dashboard/dashboard.component';
+
 import { ListView } from '../customComponent/list/listview.component';
 import { CustomNavbar } from '../customComponent/navbar.component.ts';
 
@@ -44,7 +46,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     ModalNavbarComponent,
     newRequestModal,
     ViewComponent,
-    ForgotPasswordModal
+    ForgotPasswordModal,
+    DashboardComponent
   ],
   imports: [
     MomentModule,
@@ -67,7 +70,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     ModalNavbarComponent,
     newRequestModal,
     ViewComponent,
-    ForgotPasswordModal
+    ForgotPasswordModal,
+    DashboardComponent
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })

@@ -53,6 +53,11 @@ export class Configuration {
     return this.options;
   }
 
+  setUrl(url) {
+    this.setHeader();
+    this.Server = "https://yugmatesting01.appspot.com/" + this.role + "/" + this.userId + "/request";
+  }
+
   getRequestUrl() {
     return "https://yugmatesting01.appspot.com/" + this.role + "/" + this.userId + "/request";
   }

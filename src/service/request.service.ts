@@ -20,7 +20,7 @@ export class RequestService {
   }
 
   getHeader() {
-    this.serverUrl = this._configuration.getRequestUrl();
+    this.serverUrl = this._configuration.Server;;
     this.header = this._configuration.header();
   }
 
