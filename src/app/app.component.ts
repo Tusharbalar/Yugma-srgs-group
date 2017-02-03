@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { TabsPage } from '../pages/tabs/tabs';
+import { AccountPage } from '../pages/account/account';
 
 import { Configuration } from '../service/app.constants';
 import { AuthService } from '../service/auth.service';
@@ -40,7 +41,8 @@ export class MyApp {
 
     this.pages = [
       { title: 'Dashboard', component: DashboardComponent, icon: 'ios-home-outline', url: 'dashboard' },
-      { title: 'Complaints', component: TabsPage, icon: 'ios-sad-outline', url: 'complaint' }
+      { title: 'Complaints', component: TabsPage, icon: 'ios-sad-outline', url: 'complaint' },
+      { title: 'Account', component: AccountPage, icon: 'ios-contact-outline', url: 'account' }
     ];
 
     this.hasLoggedIn();

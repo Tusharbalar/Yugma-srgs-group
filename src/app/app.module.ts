@@ -27,6 +27,8 @@ import { CommentModal } from '../customComponent/commentModal.ts';
 import { ModalNavbarComponent } from '../customComponent/modal.navbar.component';
 import { ParentInfo } from '../service/parentInfo';
 import { PopoverPage } from '../pages/all-request/PopoverPage';
+import { AccountPage } from '../pages/account/account';
+
 
 import { ForgotPasswordModal } from '../pages/login/forgotPassword';
 
@@ -49,7 +51,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     ViewComponent,
     ForgotPasswordModal,
     DashboardComponent,
-    PopoverPage
+    PopoverPage,
+    AccountPage
   ],
   imports: [
     MomentModule,
@@ -74,7 +77,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     ViewComponent,
     ForgotPasswordModal,
     DashboardComponent,
-    PopoverPage
+    PopoverPage,
+    AccountPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })
