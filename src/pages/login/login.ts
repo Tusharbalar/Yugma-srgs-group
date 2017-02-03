@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { LoadingController, NavController, ToastController, AlertController, MenuController, ModalController } from 'ionic-angular';
+import { LoadingController, NavController, ToastController, AlertController, MenuController, ModalController, Events } from 'ionic-angular';
 
 import { Configuration } from '../../service/app.constants';
 import { AuthService } from '../../service/auth.service';
-import { TabsPage } from '../tabs/tabs';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ForgotPasswordModal } from './forgotPassword';
 
 @Component({
@@ -24,6 +24,8 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
               public authService: AuthService,
+              public menu: MenuController,
+              public events: Events,
               public loadingCtrl: LoadingController,
               public modalCtrl: ModalController,
               public configuration: Configuration,
@@ -42,8 +44,10 @@ export class LoginPage {
       console.log("QQQQQQ", response)
       this.authService.info(response).subscribe((res) => {
         console.log("response from user info", res);
-        this.authService.storeData(res);
-        this.navCtrl.setRoot(TabsPage);  // Set homepage to root
+        // this.authService.storeData(res);
+        // this.navCtrl.setRoot(DashboardComponent);
+        this.events.publish("user:login");
+        // this.menu.enable(true);
         this.loading.dismiss();
         this.successToast();
         this.setNotificationToken();

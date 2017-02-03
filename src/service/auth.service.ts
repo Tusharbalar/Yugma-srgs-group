@@ -25,6 +25,11 @@ export class AuthService {
 
   public hasLogin: boolean = false;
 
+  // called after logout
+  resetLoginStatus() {
+    this.hasLogin = false;
+  }
+
   isLoggedIn() {
     if (localStorage.getItem("access_token")) {
       this._configuration.setAccessToken();
@@ -57,7 +62,7 @@ export class AuthService {
 
     return this._http.get(this.serverUrl + "/management/info", options).map((res: Response) => {
       localStorage.setItem("access_token", access_token);
-      this._configuration.setAccessToken();
+      this.storeData(res.json());
       return res.json();
     }).catch((error: any) => Observable.throw(error || 'server error'));
 
@@ -71,6 +76,7 @@ export class AuthService {
     localStorage.setItem("email", data.email);
     localStorage.setItem("name", data.name);
     localStorage.setItem("nickName", data.nickName);
+    this._configuration.setAccessToken();
   }
 
   forgotPassword(username: string) {

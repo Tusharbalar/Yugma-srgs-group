@@ -14,7 +14,7 @@ export class Configuration {
 
   }
 
-  public Server: string = "https://yugmatesting01.appspot.com";
+  public Server: string = "https://yugmatesting01.appspot-preview.com";
 
   // set access_token after user login
   setAccessToken() {
@@ -55,11 +55,11 @@ export class Configuration {
 
   setUrl(url) {
     this.setHeader();
-    this.Server = "https://yugmatesting01.appspot.com/" + this.role + "/" + this.userId + "/request";
+    this.Server = "https://yugmatesting01.appspot-preview.com/" + this.role + "/" + this.userId + "/request";
   }
 
   getRequestUrl() {
-    return "https://yugmatesting01.appspot.com/" + this.role + "/" + this.userId + "/request";
+    return "https://yugmatesting01.appspot-preview.com/" + this.role + "/" + this.userId + "/request";
   }
 
 }
