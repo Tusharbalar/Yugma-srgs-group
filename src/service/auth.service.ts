@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ToastController, Events } from 'ionic-angular';
 
+import { RequestService } from './request.service';
 import { Observable } from 'rxjs/Observable';
 import { Configuration } from './app.constants';
 
@@ -22,6 +23,7 @@ export class AuthService {
   constructor(private _http : Http,
               private toastCtrl: ToastController,
               public events: Events,
+              public requestService: RequestService,
               private _configuration: Configuration) {
   }
 
@@ -73,8 +75,20 @@ export class AuthService {
     this.getNewHeader(access_token);
     return this._http.get(this.baseUrl + "/management/info", this.options).map((res: Response) => {
       this.storeData(res.json());
+      this.getEditInfo();
       return res.json();
     }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
+  public getEditInfo() {
+    this.requestService.editInfo().subscribe((res) => {
+      let data = res.json();
+      localStorage.setItem("acknowledgements", JSON.stringify(data.acknowledgements));
+      localStorage.setItem("employees", JSON.stringify(data.employees));
+      localStorage.setItem("priorities", JSON.stringify(data.priorities));
+    }, (err) => {
+      console.log("err", err);
+    });
   }
 
   public storeData(data) {

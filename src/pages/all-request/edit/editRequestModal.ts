@@ -59,6 +59,16 @@ export class EditRequestModal implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.priorities = JSON.parse(localStorage.getItem("priorities"));
+    this.employees = JSON.parse(localStorage.getItem("employees"));
+    this.acknowledgements = JSON.parse(localStorage.getItem("acknowledgements"));
+    console.log(this.priorities);
+    if (this.priorities === null) {
+      this.getEditInfo();
+    }
+  }
+
+  getEditInfo() {
     this.nl.showLoader();
     this.c.editInfo().subscribe((res) => {
       this.nl.hideLoader();
