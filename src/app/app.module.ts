@@ -26,6 +26,7 @@ import { ListViewCloseButton,
 import { CommentModal } from '../customComponent/commentModal.ts';
 import { ModalNavbarComponent } from '../customComponent/modal.navbar.component';
 import { ParentInfo } from '../service/parentInfo';
+import { PopoverPage } from '../pages/all-request/PopoverPage';
 
 import { ForgotPasswordModal } from '../pages/login/forgotPassword';
 
@@ -47,7 +48,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     newRequestModal,
     ViewComponent,
     ForgotPasswordModal,
-    DashboardComponent
+    DashboardComponent,
+    PopoverPage
   ],
   imports: [
     MomentModule,
@@ -71,7 +73,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     newRequestModal,
     ViewComponent,
     ForgotPasswordModal,
-    DashboardComponent
+    DashboardComponent,
+    PopoverPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })
