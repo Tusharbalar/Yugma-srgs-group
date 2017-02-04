@@ -10,7 +10,9 @@ import { Component, Input } from '@angular/core';
       <ion-row>
         <ion-col width-50 class="no-padding-l" style="color:#535353;"><ion-icon name="clock"></ion-icon><span>{{complaint.createdAt | amTimeAgo}}</span>
         </ion-col>
-        <ion-col width-50 class="no-padding-l" [style.color] = "complaint.statusColor"><ion-icon name="at"></ion-icon><span>{{complaint.statusName}}</span>
+        <ion-col width-50 class="no-padding-l" [style.color]="complaint.statusColor">
+          <ion-icon name="at"></ion-icon>
+          <span>{{complaint.statusName}}</span>
         </ion-col>
       </ion-row>
     </ion-note>

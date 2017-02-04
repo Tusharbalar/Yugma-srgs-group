@@ -8,8 +8,8 @@ import { CustomService } from '../../service/customService';
   template: `
     <ion-list radio-group [(ngModel)]="autoManufacturers">
       <ion-item *ngFor="let a of status">
-        <ion-label>{{a.status}}</ion-label>
-        <ion-radio value="{{a.id}}" (click)="aa(a.id)"></ion-radio>
+        <ion-label>{{a.name}}</ion-label>
+        <ion-radio value="{{a.id}}" (click)="aa(a)"></ion-radio>
       </ion-item>
     </ion-list>
   `
@@ -20,6 +20,7 @@ export class PopoverPage {
   selectStatus;
   selectedStatus;
   autoManufacturers;
+  status;
 
   constructor(public viewCtrl: ViewController,
               private navParams: NavParams) {
@@ -27,6 +28,7 @@ export class PopoverPage {
 
   ngOnInit() {
     this.selectStatus = this.navParams.get('selectedStatus');
+    this.status = this.navParams.get('filterInfo');
     this.autoManufacturers = this.selectStatus;
   }
 
@@ -34,33 +36,10 @@ export class PopoverPage {
     this.viewCtrl.dismiss();
   }
 
-  status = [{
-    id: 1,
-    status: "New"
-  }, {
-    id: 2,
-    status: "Inprogress"
-  }, {
-    id: 3,
-    status: "Assigned"
-  }, {
-    id: 4,
-    status: "Closed"
-  }, {
-    id: 5,
-    status: "Reopen"
-  }, {
-    id: 6,
-    status: "Satisfied"
-  }, {
-    id: 0,
-    status: "All Requests"
-  }];
-
-  aa(id) {
-    console.log("AAAAA",  id);
-    this.viewCtrl.dismiss(id);
-    this.selectedStatus = id;
+  aa(data) {
+    console.log("AAAAA",  data.id);
+    this.viewCtrl.dismiss(data);
+    this.selectedStatus = data.id;
   }
 
 }

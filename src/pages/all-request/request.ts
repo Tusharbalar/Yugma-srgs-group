@@ -8,6 +8,8 @@ import { newRequestModal } from './new/newRequestModal';
 import { ViewComponent } from './view/viewRequestModal';
 import { LoginPage } from '../login/login';
 import { PopoverPage } from './PopoverPage';
+import * as _ from 'underscore';
+
 
 @Component({
   selector: 'all-request',
@@ -105,8 +107,10 @@ export class AllRequestPage {
   selectedStatus = 0;
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, {selectedStatus: this.selectedStatus});
+    let filterInfo = JSON.parse(localStorage.getItem("filterInfo"));
+    let popover = this.popoverCtrl.create(PopoverPage, {selectedStatus: this.selectedStatus, filterInfo: filterInfo});
     popover.onDidDismiss((data) => {
+      if (!data) { return; }
       this.filterRequest(data);
     });
     popover.present({
@@ -115,7 +119,7 @@ export class AllRequestPage {
   }
 
   filterRequest(data) {
-    this.selectedStatus = data;
+    this.selectedStatus = data.id;
     this.allRequests = [];
     if (data) {
       this.requestByStatus(data);
@@ -127,9 +131,16 @@ export class AllRequestPage {
 
   requestByStatus(data) {
     this.cs.showLoader();
-    this.requestService.getRequestByStatus(data).subscribe((response) => {
+    this.requestService.getRequestByStatus(data.id).subscribe((response) => {
       this.cs.hideLoader();
       this.allRequests = response.json();
+      _.map(this.allRequests, function(r) {
+        r.statusColor = data.color;
+        r.statusName = data.name;
+      });
+    }, (err) => {
+      this.cs.hideLoader();
+      this.cs.errMessage();
     });
   }
 
