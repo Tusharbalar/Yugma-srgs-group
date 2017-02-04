@@ -73,4 +73,10 @@ export class RequestService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
+  getRequestByStatus(statusId) {
+    return this._http.get(this.serverUrl + "/status/" + statusId, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
 }

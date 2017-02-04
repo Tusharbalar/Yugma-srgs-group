@@ -1,35 +1,66 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { NavController, ModalController, ActionSheetController, PopoverController, ViewController, NavParams } from 'ionic-angular';
+
+import { RequestService } from '../../service/request.service';
+import { CustomService } from '../../service/customService';
 
 @Component({
   template: `
-    <form name="status" [formGroup]="byStatus">
-      <ion-list radio-group [(ngModel)]="autoManufacturers">
-        <ion-item *ngFor="let a of status">
-          <ion-label>{{a.title}}</ion-label>
-          <ion-radio [(ngModel)]="aa" value="{{a.value}}"></ion-radio>
-        </ion-item>
-      </ion-list>
-    </form>
+    <ion-list radio-group [(ngModel)]="autoManufacturers">
+      <ion-item *ngFor="let a of status">
+        <ion-label>{{a.status}}</ion-label>
+        <ion-radio value="{{a.id}}" (click)="aa(a.id)"></ion-radio>
+      </ion-item>
+    </ion-list>
   `
 })
 
 export class PopoverPage {
 
-  constructor(public viewCtrl: ViewController) {}
+  selectStatus;
+  selectedStatus;
+  autoManufacturers;
 
-  status = [{
-    title: 'Closed',
-    value: '1'
-  }, {
-    title: 'Satisfied',
-    value: '2'
-  }];
+  constructor(public viewCtrl: ViewController,
+              private navParams: NavParams) {
+  }
 
-  autoManufacturers = "2";
+  ngOnInit() {
+    this.selectStatus = this.navParams.get('selectedStatus');
+    this.autoManufacturers = this.selectStatus;
+  }
 
   close() {
     this.viewCtrl.dismiss();
+  }
+
+  status = [{
+    id: 1,
+    status: "New"
+  }, {
+    id: 2,
+    status: "Inprogress"
+  }, {
+    id: 3,
+    status: "Assigned"
+  }, {
+    id: 4,
+    status: "Closed"
+  }, {
+    id: 5,
+    status: "Reopen"
+  }, {
+    id: 6,
+    status: "Satisfied"
+  }, {
+    id: 0,
+    status: "All Requests"
+  }];
+
+  aa(id) {
+    console.log("AAAAA",  id);
+    this.viewCtrl.dismiss(id);
+    this.selectedStatus = id;
   }
 
 }

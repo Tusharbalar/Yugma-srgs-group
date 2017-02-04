@@ -31,6 +31,10 @@ export class AllRequestPage {
   }
 
   ionViewWillEnter() {
+    this.getRequests();
+  }
+
+  getRequests() {
     this.cs.showLoader();
     this.requestService.getRequests(this.currentPage).subscribe(res => {
       if (res.status === 204) {
@@ -44,7 +48,7 @@ export class AllRequestPage {
     }, (err) => {
       this.cs.hideLoader();
       this.cs.errMessage();
-    })
+    });
   }
 
   newRequest(): void {
@@ -98,34 +102,34 @@ export class AllRequestPage {
     }, 1000);
   }
 
-  // logout() {
-  //   let actionSheet = this.actionSheetCtrl.create({
-  //     title: 'Are you sure you want to logout ?',
-  //     buttons: [
-  //       {
-  //         text: 'Submit',
-  //         icon: 'ios-paper-outline',
-  //         handler: () => {
-  //           localStorage.clear();
-  //           this.navCtrl.setRoot(LoginPage);
-  //         }
-  //       },{
-  //         text: 'Cancel',
-  //         icon: 'md-close',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   actionSheet.present();
-  // }
+  selectedStatus = 0;
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
+    let popover = this.popoverCtrl.create(PopoverPage, {selectedStatus: this.selectedStatus});
+    popover.onDidDismiss((data) => {
+      this.filterRequest(data);
+    });
     popover.present({
       ev: myEvent
+    });
+  }
+
+  filterRequest(data) {
+    this.selectedStatus = data;
+    this.allRequests = [];
+    if (data) {
+      this.requestByStatus(data);
+    } else {
+      this.currentPage = 1;
+      this.getRequests();
+    }
+  }
+
+  requestByStatus(data) {
+    this.cs.showLoader();
+    this.requestService.getRequestByStatus(data).subscribe((response) => {
+      this.cs.hideLoader();
+      this.allRequests = response.json();
     });
   }
 
