@@ -76,17 +76,21 @@ export class AllRequestPage {
   doInfinite(infiniteScroll) {
     this.currentPage += 1;
     setTimeout(() => {
-      this.requestService.getRequests(this.currentPage).subscribe(response => {
-        if (response.status === 204) {
+      if (this.selectedStatus === 0) {
+        this.requestService.getRequests(this.currentPage).subscribe(response => {
+          if (response.status === 204) {
+            this.currentPage -= 1;
+            infiniteScroll.complete();
+            return;
+          }
+          this.allRequests = this.allRequests.concat(response.json());
+        }, (err) => {
           this.currentPage -= 1;
-          infiniteScroll.complete();
-          return;
-        }
-        this.allRequests = this.allRequests.concat(response.json());
-      }, (err) => {
-        this.currentPage -= 1;
-        this.EmptyRequests = false;
-      });
+          this.EmptyRequests = false;
+        });
+      } else {
+        this.doInfiniteRequestByStatus(infiniteScroll, this.data);
+      }
       infiniteScroll.complete();
     }, 1000);
   }
@@ -143,7 +147,8 @@ export class AllRequestPage {
 
   requestByStatus(data) {
     this.cs.showLoader();
-    this.requestService.getRequestByStatus(data.id).subscribe((response) => {
+    this.currentPage = 1;
+    this.requestService.getRequestByStatus(data.id, this.currentPage).subscribe((response) => {
       this.cs.hideLoader();
       if (response.status === 204) {
         this.EmptyRequests = true;
@@ -161,8 +166,26 @@ export class AllRequestPage {
     });
   }
 
+  doInfiniteRequestByStatus(infiniteScroll, data) {
+    this.requestService.getRequestByStatus(data.id, this.currentPage).subscribe((response) => {
+      if (response.status === 204) {
+        this.currentPage -= 1;
+        infiniteScroll.complete();
+        return;
+      }
+      _.map(response.json(), function(r) {
+        r.statusColor = data.color;
+        r.statusName = data.name;
+      });
+      this.allRequests = this.allRequests.concat(response.json());
+    }, (err) => {
+      this.currentPage -= 1;
+      this.EmptyRequests = false;
+    });
+  }
+
   doRefreshRequestByStatus(data) {
-    this.requestService.getRequestByStatus(data.id).subscribe((response) => {
+    this.requestService.getRequestByStatus(data.id, 1).subscribe((response) => {
       if (response.status === 204) {
         this.EmptyRequests = true;
       } else {
