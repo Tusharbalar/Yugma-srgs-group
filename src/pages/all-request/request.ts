@@ -133,11 +133,16 @@ export class AllRequestPage {
     this.cs.showLoader();
     this.requestService.getRequestByStatus(data.id).subscribe((response) => {
       this.cs.hideLoader();
-      this.allRequests = response.json();
-      _.map(this.allRequests, function(r) {
-        r.statusColor = data.color;
-        r.statusName = data.name;
-      });
+      if (response.status === 204) {
+        this.EmptyRequests = true;
+      } else {
+        this.EmptyRequests = false;
+        this.allRequests = response.json();
+        _.map(this.allRequests, function(r) {
+          r.statusColor = data.color;
+          r.statusName = data.name;
+        });
+      }
     }, (err) => {
       this.cs.hideLoader();
       this.cs.errMessage();
