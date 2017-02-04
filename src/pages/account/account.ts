@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
-import { NavController, Events, ActionSheetController } from 'ionic-angular';
+import { NavController, Events, ActionSheetController, ModalController } from 'ionic-angular';
 
+import { resetPasswordModal } from './resetPassword/resetPassword';
 import { CustomService } from '../../service/customService';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../service/auth.service';
@@ -16,6 +17,7 @@ export class AccountPage {
 
   constructor(public navCtrl: NavController,
               public events: Events,
+              public modalCtrl: ModalController,
               public actionSheetCtrl: ActionSheetController,
               public authService: AuthService,
               public nl: CustomService) {
@@ -70,6 +72,11 @@ export class AccountPage {
       ]
     });
     actionSheet.present();
+  }
+
+  openModal() {
+    let viewComplaint = this.modalCtrl.create(resetPasswordModal);
+    viewComplaint.present();
   }
 
 }

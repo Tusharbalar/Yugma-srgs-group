@@ -111,4 +111,18 @@ export class AuthService {
     });
   }
 
+  resetPassword(data) {
+    this.headers = new Headers({
+      'Content-Type' : 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
+    });
+
+    var options = new RequestOptions({
+      headers : this.headers
+    });
+    return this._http.put(this.serverUrl + "/management/" + this._configuration.getUserId() + "/password", data, options).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
 }
