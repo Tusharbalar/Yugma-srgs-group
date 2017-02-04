@@ -121,7 +121,7 @@ export class AllRequestPage {
   filterRequest(data) {
     this.selectedStatus = data.id;
     this.allRequests = [];
-    if (data) {
+    if (data.id) {
       this.requestByStatus(data);
     } else {
       this.currentPage = 1;
