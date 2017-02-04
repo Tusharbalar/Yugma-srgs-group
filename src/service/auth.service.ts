@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { ToastController } from 'ionic-angular';
+import { ToastController, Events } from 'ionic-angular';
 
 import { Observable } from 'rxjs/Observable';
 import { Configuration } from './app.constants';
@@ -18,6 +18,7 @@ export class AuthService {
 
   constructor(private _http : Http,
               private toastCtrl: ToastController,
+              public events: Events,
               private _configuration: Configuration) {
     this.serverUrl = _configuration.Server;
     this.header = _configuration.header();
@@ -31,8 +32,16 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    if (localStorage.getItem("access_token")) {
+    let access_token = localStorage.getItem("access_token");
+    if (access_token) {
       this._configuration.setAccessToken();
+      this.info(access_token).subscribe((res) => {
+        this.storeData(res);
+      }, (err) => {
+        if (err.status === 401) {
+         this.events.publish("session:expired");
+        }
+      });
       return !this.hasLogin;
     } else {
       return this.hasLogin;
@@ -53,7 +62,7 @@ export class AuthService {
 
     this.headers = new Headers({
       'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer ' + this.access_token
+      'Authorization' : 'Bearer ' + access_token
     });
 
     var options = new RequestOptions({
@@ -76,6 +85,7 @@ export class AuthService {
     localStorage.setItem("email", data.email);
     localStorage.setItem("name", data.name);
     localStorage.setItem("nickName", data.nickName);
+    localStorage.setItem("filterInfo", JSON.stringify(data.filterInfo));
     this._configuration.setAccessToken();
   }
 
