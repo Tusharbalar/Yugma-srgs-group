@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title >
-      <span>{{title | uppercase}}</span>
+      <span>{{statusName | uppercase}} {{title | uppercase}}</span>
     </ion-title>
     <ion-buttons end>
       <button type="button" ion-button icon-only (click)="presentPopover($event)">

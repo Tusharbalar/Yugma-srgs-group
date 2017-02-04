@@ -20,8 +20,11 @@ export class AllRequestPage {
   currentPage = 1;
   allRequests;
 
-  title = "REQUESTS";
   EmptyRequests = false;
+  statusName: string = "ALL";
+  title = "REQUESTS";
+
+  selectedStatus = 0;
 
   constructor(public requestService: RequestService,
               public actionSheetCtrl: ActionSheetController,
@@ -40,7 +43,6 @@ export class AllRequestPage {
     this.cs.showLoader();
     this.requestService.getRequests(this.currentPage).subscribe(res => {
       if (res.status === 204) {
-        console.log("No data");
         this.EmptyRequests = true;
       } else {
         this.EmptyRequests = false;
@@ -56,7 +58,6 @@ export class AllRequestPage {
   newRequest(): void {
     let newRequest = this.modalCtrl.create(newRequestModal);
     newRequest.onDidDismiss((newRequest) => {
-      console.log("DSa", newRequest)
       if (!newRequest) { return; }
       if (!this.allRequests) { this.allRequests = []; }
       this.EmptyRequests = false;
@@ -104,8 +105,6 @@ export class AllRequestPage {
     }, 1000);
   }
 
-  selectedStatus = 0;
-
   presentPopover(myEvent) {
     let filterInfo = JSON.parse(localStorage.getItem("filterInfo"));
     let popover = this.popoverCtrl.create(PopoverPage, {selectedStatus: this.selectedStatus, filterInfo: filterInfo});
@@ -120,6 +119,12 @@ export class AllRequestPage {
 
   filterRequest(data) {
     this.selectedStatus = data.id;
+    if (this.selectedStatus === 0) {
+      this.title = "";
+    } else {
+      this.title = "REQUESTS";
+    }
+    this.statusName = data.name;
     this.allRequests = [];
     if (data.id) {
       this.requestByStatus(data);
