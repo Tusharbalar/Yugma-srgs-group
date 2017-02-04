@@ -87,6 +87,7 @@ export class AllRequestPage {
         }, (err) => {
           this.currentPage -= 1;
           this.EmptyRequests = false;
+          this.cs.errMessage();
         });
       } else {
         this.doInfiniteRequestByStatus(infiniteScroll, this.data);
@@ -102,11 +103,12 @@ export class AllRequestPage {
         this.requestService.getRequests(this.currentPage).subscribe(response => {
           if (response.status === 204) {
             this.EmptyRequests = true;
-            this.currentPage -= 1;
           } else {
             this.EmptyRequests = false;
             this.allRequests = response.json();
           }
+        }, (err) => {
+          this.cs.errMessage();
         });
       } else {
         this.doRefreshRequestByStatus(this.data);
