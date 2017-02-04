@@ -3,6 +3,55 @@
   </nl-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Account page</h2>
+<ion-content class="csGrayBackground">
+  <ion-list>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="person" class="csFontColor1" item-left> </ion-icon>
+        <h2>Name</h2>
+        <b>{{name}}</b> <span class="csGrayText">({{nickName}})</span>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="people" class="csFontColor1" item-left> </ion-icon>
+        <h2>Username</h2>
+        <b>{{username}}</b>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="egg" class="csFontColor1" item-left> </ion-icon>
+        <h2>ID</h2>
+        <b>{{id}}</b>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ribbon" class="csFontColor1" item-left> </ion-icon>
+        <h2>Role</h2>
+        <b>{{role}}</b>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="unlock" class="csFontColor1" item-left> </ion-icon>
+        <h2>Password</h2>
+        <b>*********</b>
+        <button ion-button clear item-right color="$csGreen" (click)="openModal()">
+        <ion-icon name="create" class="csFontColor1" class="csEditButton"></ion-icon>
+      </button>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-icon name="mail" class="csFontColor1" item-left> </ion-icon>
+        <h2>E-mail</h2>
+        <b>{{email}}</b>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="phone-portrait" class="csFontColor1" item-left> </ion-icon>
+        <h2>Mobile Number</h2>
+        <b>{{contactNo}}</b>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+  <button ion-button icon-left color="color1" full type="button" (click)="logoutActionSheet()">
+    <ion-icon name="power"></ion-icon>
+    <b>Logout</b>
+  </button>
 </ion-content>

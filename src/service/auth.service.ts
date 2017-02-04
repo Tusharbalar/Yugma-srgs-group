@@ -88,4 +88,17 @@ export class AuthService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
+  getHeader() {
+    this.serverUrl = this._configuration.Server;;
+    this.header = this._configuration.header();
+  }
+
+  logout() {
+    this.getHeader();
+    return this._http.get("https://yugmatesting01.appspot-preview.com/management/logout", this.header).map((res: Response) => {
+      localStorage.clear();
+      return true;
+    });
+  }
+
 }
