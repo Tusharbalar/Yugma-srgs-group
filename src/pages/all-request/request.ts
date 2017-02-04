@@ -24,6 +24,8 @@ export class AllRequestPage {
   statusName: string = "ALL";
   title = "REQUESTS";
 
+  data;
+
   selectedStatus = 0;
 
   constructor(public requestService: RequestService,
@@ -92,15 +94,19 @@ export class AllRequestPage {
   doRefresh(refresher) {
     this.currentPage = 1;
     setTimeout(() => {
-      this.requestService.getRequests(this.currentPage).subscribe(response => {
-        if (response.status === 204) {
-          this.EmptyRequests = true;
-          this.currentPage -= 1;
-        } else {
-          this.EmptyRequests = false;
-          this.allRequests = response.json();
-        }
-      });
+      if (this.selectedStatus === 0) {
+        this.requestService.getRequests(this.currentPage).subscribe(response => {
+          if (response.status === 204) {
+            this.EmptyRequests = true;
+            this.currentPage -= 1;
+          } else {
+            this.EmptyRequests = false;
+            this.allRequests = response.json();
+          }
+        });
+      } else {
+        this.doRefreshRequestByStatus(this.data);
+      }
       refresher.complete();
     }, 1000);
   }
@@ -110,6 +116,7 @@ export class AllRequestPage {
     let popover = this.popoverCtrl.create(PopoverPage, {selectedStatus: this.selectedStatus, filterInfo: filterInfo});
     popover.onDidDismiss((data) => {
       if (!data) { return; }
+      this.data = data;
       this.filterRequest(data);
     });
     popover.present({
@@ -150,6 +157,23 @@ export class AllRequestPage {
       }
     }, (err) => {
       this.cs.hideLoader();
+      this.cs.errMessage();
+    });
+  }
+
+  doRefreshRequestByStatus(data) {
+    this.requestService.getRequestByStatus(data.id).subscribe((response) => {
+      if (response.status === 204) {
+        this.EmptyRequests = true;
+      } else {
+        this.EmptyRequests = false;
+        this.allRequests = response.json();
+        _.map(this.allRequests, function(r) {
+          r.statusColor = data.color;
+          r.statusName = data.name;
+        });
+      }
+    }, (err) => {
       this.cs.errMessage();
     });
   }
