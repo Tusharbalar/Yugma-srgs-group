@@ -76,7 +76,8 @@ export class MyApp {
       console.log("Login successfully");
       this.getUserName();
       this.enableMenu(true);
-      this.rootPage = DashboardComponent;
+      this.selectedPage = "";
+      this.nav.setRoot(DashboardComponent);
     });
     this.events.subscribe('user:logout', () => {
       this.enableMenu(false);

@@ -29,6 +29,7 @@ export class AuthService {
   // called after logout
   resetLoginStatus() {
     this.hasLogin = false;
+    this.serverUrl = "https://yugmatesting01.appspot-preview.com";
   }
 
   isLoggedIn() {
