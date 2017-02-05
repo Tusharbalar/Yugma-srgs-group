@@ -2,7 +2,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AllRequestPage } from '../pages/all-request/request';
-import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 
 import { AuthService } from '../service/auth.service';
@@ -34,7 +33,6 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
   declarations: [
     MyApp,
     AllRequestPage,
-    TabsPage,
     LoginPage,
     ListView,
     CustomNavbar,
@@ -60,7 +58,6 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
   entryComponents: [
     MyApp,
     AllRequestPage,
-    TabsPage,
     LoginPage,
     ListView,
     CustomNavbar,
