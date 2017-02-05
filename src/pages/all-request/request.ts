@@ -79,10 +79,10 @@ export class AllRequestPage {
     this.HasComplaintSelect = complaint;
     this.cs.showLoader();
     this.requestService.getFullRequest(complaint.id).subscribe((res) => {
+      this.cs.hideLoader();
       let viewRequest = this.modalCtrl.create(ViewComponent, {request: res.json()});
-      viewRequest.onDidDismiss(data => {
+      viewRequest.onDidDismiss((data) => {
         if (!res) { return; }
-        console.log("DSDSDSDSD", data)
         this.HasComplaintSelect.statusName = data.statusName;
         this.HasComplaintSelect.statusId = data.statusId;
         this.HasComplaintSelect.statusColor = data.statusColor;
@@ -91,7 +91,6 @@ export class AllRequestPage {
     }, (err) => {
       this.onError();
     });
-    _.debounce(this.cs.hideLoader(), 2000);
   }
 
 
