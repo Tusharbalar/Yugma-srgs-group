@@ -157,11 +157,6 @@ export class AllRequestPage {
       } else {
         this.EmptyRequests = false;
         this.allRequests = response.json();
-        _.map(this.allRequests, function(r) {
-          r.statusColor = data.color;
-          r.statusName = data.name;
-          r.statusId = data.id;
-        });
       }
     }, (err) => {
       this.cs.hideLoader();
@@ -176,11 +171,6 @@ export class AllRequestPage {
         infiniteScroll.complete();
         return;
       }
-      _.map(response.json(), function(r) {
-        r.statusColor = data.color;
-        r.statusName = data.name;
-        r.statusId = data.id;
-      });
       this.allRequests = this.allRequests.concat(response.json());
     }, (err) => {
       this.currentPage -= 1;
@@ -195,11 +185,6 @@ export class AllRequestPage {
       } else {
         this.EmptyRequests = false;
         this.allRequests = response.json();
-        _.map(this.allRequests, function(r) {
-          r.statusColor = data.color;
-          r.statusName = data.name;
-          r.statusId = data.id;
-        });
       }
     }, (err) => {
       this.cs.errMessage();
