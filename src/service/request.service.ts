@@ -79,4 +79,17 @@ export class RequestService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
+  editInfo(): Observable<any> {
+    this.getHeader();
+    return this._http.get(this.serverUrl + "/edit-info", this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
+  editRequest(id, data): Observable<any> {
+    return this._http.put(this.serverUrl + "/" + id, data, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
 }

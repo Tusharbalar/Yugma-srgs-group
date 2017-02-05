@@ -24,13 +24,21 @@
     </ion-card>
     <ion-card>
       <ion-item class="csInProgress" *ngIf="complaintStatusId != 3">
-        <ion-label>InProgress</ion-label>
+        <ion-label>Request InProgress</ion-label>
         <ion-checkbox [(ngModel)]="inProgress.hasSelected" [ngModelOptions]="{standalone: true}" (ionChange)="setStatus($event)">
         </ion-checkbox>
       </ion-item>
     </ion-card>
+    <ion-card>
+      <ion-list radio-group [(ngModel)]="autoManufacturers" [ngModelOptions]="{standalone: true}">
+        <ion-item *ngFor="let a of acknowledgements">
+          <ion-radio value="{{a.id}}" (click)="selectAcknowledgement(a)"></ion-radio>
+          <ion-label>{{a.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
     <div padding>
-      <button type="submit" ion-button block >SUBMIT</button>
+      <button type="submit" ion-button block>SUBMIT</button>
     </div>
   </form>
 </ion-content>

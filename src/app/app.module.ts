@@ -29,6 +29,7 @@ import { PopoverPage } from '../pages/all-request/PopoverPage';
 import { AccountPage } from '../pages/account/account';
 import { resetPasswordModal } from '../pages/account/resetPassword/resetPassword';
 import { EditComplaintModal } from '../pages/all-request/edit/editComplaintModal';
+import { SearchModal } from '../customComponent/searchModal';
 
 import { ForgotPasswordModal } from '../pages/login/forgotPassword';
 
@@ -53,7 +54,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     PopoverPage,
     AccountPage,
     resetPasswordModal,
-    EditComplaintModal
+    EditComplaintModal,
+    SearchModal
   ],
   imports: [
     MomentModule,
@@ -80,7 +82,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     PopoverPage,
     AccountPage,
     resetPasswordModal,
-    EditComplaintModal
+    EditComplaintModal,
+    SearchModal
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })

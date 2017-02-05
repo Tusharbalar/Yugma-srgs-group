@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import * as _ from 'underscore';
 
 // import modal
-// import { SearchModal } from '../../../customComponent/searchModal';
+import { SearchModal } from '../../../customComponent/searchModal';
 
 // import service
 import { RequestService } from '../../../service/request.service';
@@ -34,12 +34,13 @@ export class EditComplaintModal implements OnInit {
   };
 
   assignedEmployeeName: string;
+  acknowledgements;
   priorityId: number;
 
   cmplEdit;
 
   // set header title
-  public title: string = "Edit Complaint";
+  public title: string = "Edit Request";
 
   constructor(private c: RequestService,
               private nl: CustomService,
@@ -59,19 +60,24 @@ export class EditComplaintModal implements OnInit {
 
   ionViewWillEnter() {
     this.nl.showLoader();
-    // this.c.editInfo().subscribe((res) => {
-    //   this.nl.hideLoader();
-    //   this.priorities = res.json().priorities;
-    //   this.employees = res.json().employees;
-    //   console.log("DSADSA1111", this.priorities)
-    // }, (err) => {
-    //   this.onError();
-    // });
+    this.c.editInfo().subscribe((res) => {
+      this.nl.hideLoader();
+      let jsonres = res.json();
+      this.priorities = jsonres.priorities;
+      this.employees = jsonres.employees;
+      this.acknowledgements = jsonres.acknowledgements;
+    }, (err) => {
+      this.onError();
+    });
+  }
+
+  selectAcknowledgement(data) {
+    console.log("SASAS", data);
+    this.editComplaint.value.acknowledgementId = data.id;
   }
 
   getComplaint() {
     this.complaint = this.navParams.get("complaint");
-    console.log("complaint ", this.complaint)
     this.complaintId = this.complaint.id;
     this.complaintStatusId = this.complaint.statusId;
   }
@@ -79,7 +85,6 @@ export class EditComplaintModal implements OnInit {
   initEditData() {
     this.assignedEmployeeName = this.complaint.assignedEmployeeName;
     this.priorityId = this.complaint.priorityId;
-    console.log("complaint priorityId ", this.complaint.priorityId)
     if (this.complaint.statusId === 3) {
       this.inProgress = {
         hasSelected: true
@@ -100,13 +105,13 @@ export class EditComplaintModal implements OnInit {
 
   openModal() {
     if (!this.employees) { return ; }
-    // let editInfo = this.modalCtrl.create(SearchModal, {info: this.employees});
-    // editInfo.present();
-    // editInfo.onDidDismiss((data) => {
-    //   if (!data) { return; }
-    //   this.assignedTo = data.id;
-    //   this.setTeacher(data);
-    // });
+    let editInfo = this.modalCtrl.create(SearchModal, {info: this.employees});
+    editInfo.present();
+    editInfo.onDidDismiss((data) => {
+      if (!data) { return; }
+      this.assignedTo = data.id;
+      this.setTeacher(data);
+    });
   }
 
   setTeacher(data) {
@@ -140,7 +145,7 @@ export class EditComplaintModal implements OnInit {
 
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Edit Complaint ?',
+      title: 'Edit Request ?',
       buttons: [{
         text: 'Submit',
         icon: 'ios-paper-outline',
@@ -152,7 +157,7 @@ export class EditComplaintModal implements OnInit {
         icon: 'md-close',
         role: 'cancel',
         handler: () => {
-          console.log('Cancel clicked');
+          console.log('Cancel clicked', this.editComplaint.value);
         }
       }]
     });
@@ -161,11 +166,11 @@ export class EditComplaintModal implements OnInit {
 
   onSubmit() {
     this.nl.showLoader();
-    // this.c.editComplaint(this.complaintId, this.editComplaint.value).subscribe((res) => {
-    //   this.onSuccess(res.json());
-    // }, (err) => {
-    //   this.onError();
-    // });
+    this.c.editRequest(this.complaintId, this.editComplaint.value).subscribe((res) => {
+      this.onSuccess(res.json());
+    }, (err) => {
+      this.onError();
+    });
   }
 
   onSuccess(data) {
