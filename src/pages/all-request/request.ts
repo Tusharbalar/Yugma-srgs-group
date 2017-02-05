@@ -160,6 +160,7 @@ export class AllRequestPage {
         _.map(this.allRequests, function(r) {
           r.statusColor = data.color;
           r.statusName = data.name;
+          r.statusId = data.id;
         });
       }
     }, (err) => {
@@ -178,6 +179,7 @@ export class AllRequestPage {
       _.map(response.json(), function(r) {
         r.statusColor = data.color;
         r.statusName = data.name;
+        r.statusId = data.id;
       });
       this.allRequests = this.allRequests.concat(response.json());
     }, (err) => {
@@ -196,6 +198,7 @@ export class AllRequestPage {
         _.map(this.allRequests, function(r) {
           r.statusColor = data.color;
           r.statusName = data.name;
+          r.statusId = data.id;
         });
       }
     }, (err) => {

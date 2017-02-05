@@ -20,8 +20,7 @@ import { newRequestModal } from '../pages/all-request/new/newRequestModal';
 import { CustomService } from '../service/customService';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { ListViewCloseButton,
-         ListViewReopenButton,
-         ListViewSatisfiedButton,
+         ListViewEditButton,
          ListViewCommentButton } from '../customComponent/list/edit-cs-status-and-comment.component';
 import { CommentModal } from '../customComponent/commentModal.ts';
 import { ModalNavbarComponent } from '../customComponent/modal.navbar.component';
@@ -29,6 +28,7 @@ import { ParentInfo } from '../service/parentInfo';
 import { PopoverPage } from '../pages/all-request/PopoverPage';
 import { AccountPage } from '../pages/account/account';
 import { resetPasswordModal } from '../pages/account/resetPassword/resetPassword';
+import { EditComplaintModal } from '../pages/all-request/edit/editComplaintModal';
 
 import { ForgotPasswordModal } from '../pages/login/forgotPassword';
 
@@ -43,8 +43,7 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     CustomNavbar,
     ListViewCloseButton,
     ListViewCommentButton,
-    ListViewReopenButton,
-    ListViewSatisfiedButton,
+    ListViewEditButton,
     CommentModal,
     ModalNavbarComponent,
     newRequestModal,
@@ -53,7 +52,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     DashboardComponent,
     PopoverPage,
     AccountPage,
-    resetPasswordModal
+    resetPasswordModal,
+    EditComplaintModal
   ],
   imports: [
     MomentModule,
@@ -70,8 +70,7 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     CustomNavbar,
     ListViewCloseButton,
     ListViewCommentButton,
-    ListViewReopenButton,
-    ListViewSatisfiedButton,
+    ListViewEditButton,
     CommentModal,
     ModalNavbarComponent,
     newRequestModal,
@@ -80,7 +79,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     DashboardComponent,
     PopoverPage,
     AccountPage,
-    resetPasswordModal
+    resetPasswordModal,
+    EditComplaintModal
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
 })

@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { ModalController, AlertController, ActionSheetController } from 'ionic-angular';
 import { EditComplaintStatusAndComment } from './edit-cs-status-and-comment.class';
 
+import { EditComplaintModal } from '../../pages/all-request/edit/editComplaintModal';
+
 // import service
 import { CustomService } from '../../service/customService';
 import { RequestService } from '../../service/request.service';
@@ -19,60 +21,6 @@ import { RequestService } from '../../service/request.service';
 })
 
 export class ListViewCloseButton extends EditComplaintStatusAndComment {
-
-  @Input() complaint;
-  @Input('master') masterName: string;
-
-  constructor(public modalCtrl: ModalController,
-              public nl: CustomService,
-              public c: RequestService,
-              public actionSheetCtrl: ActionSheetController,
-              public alertCtrl: AlertController) {
-    super(modalCtrl, nl, c, actionSheetCtrl, alertCtrl);
-  }
-
-}
-
-@Component({
-  selector: 'nl-reopen-button',
-  template: `
-    <div style="height:100%;">
-      <button ion-button color="danger" (click)="openReopenModal(complaint)" *ngIf="complaint.statusId === 4">
-        <ion-icon name="ios-thumbs-down"></ion-icon>
-        Reopen
-      </button>
-    </div>
-  `
-})
-
-export class ListViewReopenButton extends EditComplaintStatusAndComment  {
-
-  @Input() complaint;
-  @Input('master') masterName: string;
-
-  constructor(public modalCtrl: ModalController,
-              public nl: CustomService,
-              public c: RequestService,
-              public actionSheetCtrl: ActionSheetController,
-              public alertCtrl: AlertController) {
-    super(modalCtrl, nl, c, actionSheetCtrl, alertCtrl);
-  }
-
-}
-
-@Component({
-  selector: 'nl-satisfied-button',
-  template: `
-    <div style="height:100%;">
-      <button ion-button color="primary" (click)="openSatisfiedModal(complaint)" *ngIf="complaint.statusId === 4">
-        <ion-icon name="ios-thumbs-up"></ion-icon>
-        Satisfied
-      </button>
-    </div>
-  `
-})
-
-export class ListViewSatisfiedButton extends EditComplaintStatusAndComment {
 
   @Input() complaint;
   @Input('master') masterName: string;
@@ -110,6 +58,49 @@ export class ListViewCommentButton extends EditComplaintStatusAndComment {
               public actionSheetCtrl: ActionSheetController,
               public alertCtrl: AlertController) {
     super(modalCtrl, nl, c, actionSheetCtrl, alertCtrl);
+  }
+
+}
+
+@Component({
+  selector: 'nl-edit-button',
+  template: `
+    <div style="height:100%;">
+      <button ion-button color="edit" (click)="openEditModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4">
+        <ion-icon name="ios-create"></ion-icon>
+        Edit
+      </button>
+    </div>
+  `
+})
+
+export class ListViewEditButton {
+
+  @Input() complaint;
+  @Input('master') masterName: string;
+
+  constructor(public modalCtrl: ModalController,
+              public nl: CustomService,
+              public c: RequestService,
+              public actionSheetCtrl: ActionSheetController,
+              public alertCtrl: AlertController) {
+
+  }
+
+  updateData(data) {
+    this.complaint.statusName = data.statusName;
+    this.complaint.statusId = data.statusId;
+    this.complaint.statusColor = data.statusColor;
+  }
+
+  openEditModal(complaint) {
+    this.complaint = complaint;
+    let edit = this.modalCtrl.create(EditComplaintModal, {complaint: complaint});
+    edit.onDidDismiss((res) => {
+      if (!res) { return; }
+      this.updateData(res);
+    });
+    edit.present();
   }
 
 }

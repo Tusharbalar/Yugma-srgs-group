@@ -1,0 +1,36 @@
+<ion-header>
+  <nl-modal-navbar [title]="title" [complaint]="complaint"></nl-modal-navbar>
+</ion-header>
+
+<ion-content class="csBackgroundGray">
+  <form name="editcomplaint" [formGroup]="editComplaint" (ngSubmit)="updateComplaint()" novalidate>
+    <ion-card>
+      <ion-item style="margin-bottom: -30px;">
+        <ion-label color="primary" stacked>Assigned To</ion-label>
+        <ion-input type="text" name="assignedTo" placeholder="Select Teacher" formControlName="assignedTo" (focus)="openModal()"></ion-input>
+      </ion-item>
+      <ion-icon (click)="resetTeacher()" style="float: right;bottom:10px;font-size: 32px; position: relative;margin-right: 15px; color:#fd4545"
+        name="refresh"></ion-icon>
+    </ion-card>
+    <ion-card>
+      <ion-item class="csRemoveBottom">
+        <ion-label>Set Priority</ion-label>
+        <ion-select name="priorityId" formControlName="priorityId">
+          <ion-option *ngFor="let priority of priorities" [value]="priority.id">
+            {{priority.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item class="csInProgress" *ngIf="complaintStatusId != 3">
+        <ion-label>InProgress</ion-label>
+        <ion-checkbox [(ngModel)]="inProgress.hasSelected" [ngModelOptions]="{standalone: true}" (ionChange)="setStatus($event)">
+        </ion-checkbox>
+      </ion-item>
+    </ion-card>
+    <div padding>
+      <button type="submit" ion-button block >SUBMIT</button>
+    </div>
+  </form>
+</ion-content>
