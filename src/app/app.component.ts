@@ -59,7 +59,6 @@ export class MyApp {
 
   openPage(page) {
     this.selectedPage = page.title;
-    this._configuration.setUrl(page.url);
     this.nav.setRoot(page.component);
   }
 

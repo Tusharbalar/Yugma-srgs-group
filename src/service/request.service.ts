@@ -20,7 +20,7 @@ export class RequestService {
 
   public getHeader() {
     let access_token = localStorage.getItem("access_token");
-    this.serverUrl = this._configuration.Server;
+    this.serverUrl = this._configuration.getRequestUrl();
     this.options = this._configuration.getHeader(access_token);
   }
 

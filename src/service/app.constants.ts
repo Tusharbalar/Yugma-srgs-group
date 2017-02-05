@@ -19,7 +19,6 @@ export class Configuration {
   // set access_token after user login
   setAccessToken() {
     this.getRole();
-    this.setHeader();
   }
 
   getHeader(access_token) {
@@ -41,32 +40,6 @@ export class Configuration {
   getUserId() {
     this.userId = localStorage.getItem("id");
     return this.userId;
-  }
-
-  setHeader() {
-    this.headers = new Headers({
-      'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
-    });
-    this.options = new RequestOptions({
-      headers : this.headers
-    });
-  }
-
-  header() {
-    this.headers = new Headers({
-      'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
-    });
-    this.options = new RequestOptions({
-      headers : this.headers
-    });
-    return this.options;
-  }
-
-  setUrl(url) {
-    this.setHeader();
-    this.Server = "https://yugmatesting01.appspot-preview.com/" + this.role + "/" + this.userId + "/request";
   }
 
   getRequestUrl() {
