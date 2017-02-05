@@ -24,8 +24,6 @@ export class AuthService {
               private toastCtrl: ToastController,
               public events: Events,
               private _configuration: Configuration) {
-    this.serverUrl = _configuration.Server;
-    this.header = _configuration.header();
   }
 
   public baseUrl = "https://yugmatesting01.appspot-preview.com";
@@ -33,7 +31,6 @@ export class AuthService {
   // called after logout
   resetLoginStatus() {
     this.hasLogin = false;
-    this.serverUrl = "https://yugmatesting01.appspot-preview.com";
   }
 
   isLoggedIn() {
@@ -67,7 +64,7 @@ export class AuthService {
   }
 
   verifyUser(data: Object): Observable<any[]> {
-    return this._http.post(this.serverUrl + "/login", data).map((res: Response) => {
+    return this._http.post(this.baseUrl + "/login", data).map((res: Response) => {
       this.access_token = res.json().access_token;
       return this.access_token;
     }).catch((error: any) => Observable.throw(error || 'server error'));
@@ -75,7 +72,7 @@ export class AuthService {
 
   getUserInfo(access_token) {
     this.getNewHeader(access_token);
-    return this._http.get(this.serverUrl + "/management/info", this.options).map((res: Response) => {
+    return this._http.get(this.baseUrl + "/management/info", this.options).map((res: Response) => {
       this.storeData(res.json());
       return res.json();
     }).catch((error: any) => Observable.throw(error || 'server error'));
@@ -98,7 +95,7 @@ export class AuthService {
     let data = {
       username: username
     }
-    return this._http.put(this.serverUrl + "/forgot-password", data).map((res: Response) => {
+    return this._http.put(this.baseUrl + "/forgot-password", data).map((res: Response) => {
       return res;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
@@ -112,17 +109,12 @@ export class AuthService {
   }
 
   resetPassword(data) {
-    this.headers = new Headers({
-      'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer ' + localStorage.getItem("access_token")
-    });
-
-    var options = new RequestOptions({
-      headers : this.headers
-    });
-    return this._http.put(this.serverUrl + "/management/" + this._configuration.getUserId() + "/password", data, options).map((res: Response) => {
-      return res;
-    }).catch((error: any) => Observable.throw(error || 'server error'));
+    this.getHeader();
+    let userId = this._configuration.getUserId();
+    return this._http.put(this.baseUrl + "/management/" + userId + "/password", data, this.options)
+      .map((res: Response) => {
+        return res;
+      }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
 }
