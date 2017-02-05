@@ -31,6 +31,7 @@ export class ViewComponent extends EditComplaintStatusAndComment implements OnIn
 
   ngOnInit() {
     this.complaint = this.navParams.get('request');
+    console.log("DSADD", this.complaint)
   }
 
   dismiss() {

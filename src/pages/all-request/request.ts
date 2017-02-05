@@ -68,10 +68,37 @@ export class AllRequestPage {
     newRequest.present();
   }
 
-  viewRequest(request): void {
-    let viewRequest = this.modalCtrl.create(ViewComponent, {request: request});
-    viewRequest.present();
+  // viewRequest(request): void {
+  //   let viewRequest = this.modalCtrl.create(ViewComponent, {request: request});
+  //   viewRequest.present();
+  // }
+
+  onError() {
+    this.cs.hideLoader();
+    this.cs.errMessage();
   }
+
+  HasComplaintSelect;
+
+  viewRequest(complaint) {
+    this.HasComplaintSelect = complaint;
+    this.cs.showLoader();
+    this.requestService.getFullRequest(complaint.id).subscribe((res) => {
+      let viewRequest = this.modalCtrl.create(ViewComponent, {request: res.json()});
+      viewRequest.onDidDismiss(data => {
+        if (!res) { return; }
+        console.log("DSDSDSDSD", data)
+        this.HasComplaintSelect.statusName = data.statusName;
+        this.HasComplaintSelect.statusId = data.statusId;
+        this.HasComplaintSelect.statusColor = data.statusColor;
+      });
+      viewRequest.present();
+    }, (err) => {
+      this.onError();
+    });
+    _.debounce(this.cs.hideLoader(), 2000);
+  }
+
 
   doInfinite(infiniteScroll) {
     this.currentPage += 1;

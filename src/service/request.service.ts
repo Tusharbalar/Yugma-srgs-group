@@ -92,4 +92,11 @@ export class RequestService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
+  getFullRequest(id): Observable<any> {
+    this.getHeader();
+    return this._http.get(this.serverUrl + "/" + id, this.header).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
+  }
+
 }
