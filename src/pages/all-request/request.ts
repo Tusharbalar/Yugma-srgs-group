@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
-
-import { NavController, ModalController, ActionSheetController, PopoverController } from 'ionic-angular';
+import { ModalController, PopoverController } from 'ionic-angular';
 
 import { RequestService } from '../../service/request.service';
 import { CustomService } from '../../service/customService';
 import { ViewComponent } from './view/viewRequestModal';
-import { LoginPage } from '../login/login';
 import { PopoverPage } from './PopoverPage';
-import * as _ from 'underscore';
-
 
 @Component({
   selector: 'all-request',
   templateUrl: 'request.html'
 })
+
 export class AllRequestPage {
 
   currentPage = 1;
@@ -22,18 +19,13 @@ export class AllRequestPage {
   EmptyRequests = false;
   statusName: string = "ALL";
   title = "REQUESTS";
-
   data;
-
   selectedStatus = 0;
 
   constructor(public requestService: RequestService,
-              public actionSheetCtrl: ActionSheetController,
               public modalCtrl: ModalController,
               public popoverCtrl: PopoverController,
-              public navCtrl: NavController,
               public cs: CustomService) {
-
   }
 
   ionViewWillEnter() {

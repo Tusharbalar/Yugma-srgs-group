@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, ActionSheetController, PopoverController, ViewController, NavParams } from 'ionic-angular';
-
-import { RequestService } from '../../service/request.service';
-import { CustomService } from '../../service/customService';
+import { ViewController, NavParams } from 'ionic-angular';
 
 @Component({
   template: `

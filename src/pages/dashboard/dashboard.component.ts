@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ComplaintSuggestion } from '../../service/cs.service';
 
 declare let google;
 

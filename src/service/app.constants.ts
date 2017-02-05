@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class Configuration {

@@ -4,7 +4,6 @@ import { LoadingController, NavController, ToastController, AlertController, Men
 
 import { Configuration } from '../../service/app.constants';
 import { AuthService } from '../../service/auth.service';
-import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ForgotPasswordModal } from './forgotPassword';
 
 @Component({

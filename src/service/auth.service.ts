@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { ToastController, Events } from 'ionic-angular';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,6 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class AuthService {
 
-  private serverUrl: string;
   private access_token: string;
   public header;
   headers;
