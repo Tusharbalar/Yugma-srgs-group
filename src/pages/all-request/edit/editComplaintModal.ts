@@ -72,7 +72,7 @@ export class EditComplaintModal implements OnInit {
   }
 
   selectAcknowledgement(data) {
-    console.log("SASAS", data);
+    this.changesMade = true;
     this.editComplaint.value.acknowledgementId = data.id;
   }
 
@@ -176,13 +176,13 @@ export class EditComplaintModal implements OnInit {
   onSuccess(data) {
     this.nl.hideLoader();
     this.viewCtrl.dismiss(data);
-    this.nl.showToast("complaint edit successfully..");
+    this.nl.showToast("Request edit successfully..");
   }
 
   onError() {
     this.nl.hideLoader();
     this.dismiss();
-    this.nl.showToast("Internal Server Error.. please try again");
+    this.nl.errMessage();
   }
 
   setStatus(e) {

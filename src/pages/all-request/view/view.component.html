@@ -79,6 +79,13 @@
           <h5>{{complaint.priorityName}}</h5>
         </span>
       </ion-item>
+      <ion-item *ngIf="complaint.acknowledgementName" class="csTransparent">
+        <ion-icon name="barcode" [style.color]="complaint.statusColor"></ion-icon>
+        <span [style.color]="complaint.statusColor" class="csBoldFont">Request Acknowledgement</span>
+        <span item-right icon-left>
+          <h5>{{complaint.acknowledgementName}}</h5>
+        </span>
+      </ion-item>
       <ion-row>
         <ion-col>
           <button (click)="openReopenModal(complaint)" *ngIf="complaint.statusId === 4" ion-button icon-left clear small>
@@ -93,10 +100,32 @@
           </button>
         </ion-col>
         <ion-col>
-          <button (click)="openCloseModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4" ion-button icon-left clear small>
+          <ion-row>
+            <ion-col width-33>
+              <button (click)="openEditModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4" ion-button icon-left
+                clear small>
+                <ion-icon name="md-create"></ion-icon>
+              <div>Edit</div>
+            </button>
+            </ion-col>
+            <ion-col width-33>
+              <button (click)="openCommentModal(complaint)" ion-button icon-left clear small>
+              <ion-icon name="md-chatbubbles"></ion-icon>
+              <div>Comment</div>
+            </button>
+            </ion-col>
+            <ion-col width-33>
+              <button class="csRight" (click)="openCloseModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4" ion-button icon-left
+                clear small>
+              <ion-icon name="close-circle"></ion-icon>
+              <div>Close</div>
+            </button>
+            </ion-col>
+          </ion-row>
+          <!-- <button (click)="openCloseModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4" ion-button icon-left clear small>
             <ion-icon name="md-close"></ion-icon>
             <div>Close</div>
-          </button>
+          </button> -->
         </ion-col>
       </ion-row>
     </ion-card>
