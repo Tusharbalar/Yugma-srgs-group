@@ -15,6 +15,10 @@ export class AuthService {
   private serverUrl: string;
   private access_token: string;
   public header;
+  headers;
+  options;
+
+  public hasLogin: boolean = false;
 
   constructor(private _http : Http,
               private toastCtrl: ToastController,
@@ -24,7 +28,7 @@ export class AuthService {
     this.header = _configuration.header();
   }
 
-  public hasLogin: boolean = false;
+  public baseUrl = "https://yugmatesting01.appspot-preview.com";
 
   // called after logout
   resetLoginStatus() {
@@ -53,36 +57,32 @@ export class AuthService {
     });
   }
 
+  getHeader() {
+    let access_token = localStorage.getItem("access_token");
+    this.options = this._configuration.getHeader(access_token);
+  }
+
+  getNewHeader(access_token) {
+    this.options = this._configuration.getHeader(access_token);
+  }
+
   verifyUser(data: Object): Observable<any[]> {
     return this._http.post(this.serverUrl + "/login", data).map((res: Response) => {
       this.access_token = res.json().access_token;
-      localStorage.setItem("access_token", this.access_token);
       return this.access_token;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
-  headers;
-
   getUserInfo(access_token) {
-
-    this.headers = new Headers({
-      'Content-Type' : 'application/json',
-      'Authorization' : 'Bearer ' + access_token
-    });
-
-    var options = new RequestOptions({
-      headers : this.headers
-    });
-
-    return this._http.get(this.serverUrl + "/management/info", options).map((res: Response) => {
-      localStorage.setItem("access_token", access_token);
+    this.getNewHeader(access_token);
+    return this._http.get(this.serverUrl + "/management/info", this.options).map((res: Response) => {
       this.storeData(res.json());
       return res.json();
     }).catch((error: any) => Observable.throw(error || 'server error'));
-
   }
 
   public storeData(data) {
+    localStorage.setItem("access_token", this.access_token);
     localStorage.setItem("id", data.id);
     localStorage.setItem("role", data.role);
     localStorage.setItem("username", data.username);
@@ -91,7 +91,7 @@ export class AuthService {
     localStorage.setItem("name", data.name);
     localStorage.setItem("nickName", data.nickName);
     localStorage.setItem("filterInfo", JSON.stringify(data.filterInfo));
-    this._configuration.setAccessToken();
+    this.events.publish("user:login");
   }
 
   forgotPassword(username: string) {
@@ -103,14 +103,9 @@ export class AuthService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
-  getHeader() {
-    this.serverUrl = this._configuration.Server;;
-    this.header = this._configuration.header();
-  }
-
   logout() {
     this.getHeader();
-    return this._http.get("https://yugmatesting01.appspot-preview.com/management/logout", this.header).map((res: Response) => {
+    return this._http.get(this.baseUrl + "/management/logout", this.options).map((res: Response) => {
       localStorage.clear();
       return true;
     });

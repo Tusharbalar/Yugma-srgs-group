@@ -74,6 +74,7 @@ export class MyApp {
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       console.log("Login successfully");
+      this._configuration.setAccessToken();
       this.getUserName();
       this.enableMenu(true);
       this.selectedPage = "";
