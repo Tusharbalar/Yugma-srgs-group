@@ -111,7 +111,7 @@ export class AllRequestPage {
           this.cs.errMessage();
         });
       } else {
-        this.doRefreshRequestByStatus(this.data);
+        this.doRefreshRequestByStatus(refresher, this.data);
       }
       refresher.complete();
     }, 1000);
@@ -175,10 +175,11 @@ export class AllRequestPage {
     }, (err) => {
       this.currentPage -= 1;
       this.EmptyRequests = false;
+      infiniteScroll.complete();
     });
   }
 
-  doRefreshRequestByStatus(data) {
+  doRefreshRequestByStatus(refresher, data) {
     this.requestService.getRequestByStatus(data.id, 1).subscribe((response) => {
       if (response.status === 204) {
         this.EmptyRequests = true;
@@ -187,6 +188,7 @@ export class AllRequestPage {
         this.allRequests = response.json();
       }
     }, (err) => {
+      refresher.complete();
       this.cs.errMessage();
     });
   }
