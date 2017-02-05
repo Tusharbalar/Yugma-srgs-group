@@ -68,11 +68,6 @@ export class AllRequestPage {
     newRequest.present();
   }
 
-  // viewRequest(request): void {
-  //   let viewRequest = this.modalCtrl.create(ViewComponent, {request: request});
-  //   viewRequest.present();
-  // }
-
   onError() {
     this.cs.hideLoader();
     this.cs.errMessage();
