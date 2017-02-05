@@ -88,18 +88,6 @@
       </ion-item>
       <ion-row>
         <ion-col>
-          <button (click)="openReopenModal(complaint)" *ngIf="complaint.statusId === 4" ion-button icon-left clear small>
-            <ion-icon name="ios-thumbs-down"></ion-icon>
-            <div>Reopen</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button (click)="openSatisfiedModal(complaint)" *ngIf="complaint.statusId === 4" ion-button icon-left clear small>
-            <ion-icon name="ios-thumbs-up"></ion-icon>
-            <div>Satisfied</div>
-          </button>
-        </ion-col>
-        <ion-col>
           <ion-row>
             <ion-col width-33>
               <button (click)="openEditModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4" ion-button icon-left
@@ -122,10 +110,6 @@
             </button>
             </ion-col>
           </ion-row>
-          <!-- <button (click)="openCloseModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4" ion-button icon-left clear small>
-            <ion-icon name="md-close"></ion-icon>
-            <div>Close</div>
-          </button> -->
         </ion-col>
       </ion-row>
     </ion-card>
