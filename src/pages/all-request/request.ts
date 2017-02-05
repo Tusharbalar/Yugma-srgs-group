@@ -4,7 +4,6 @@ import { NavController, ModalController, ActionSheetController, PopoverControlle
 
 import { RequestService } from '../../service/request.service';
 import { CustomService } from '../../service/customService';
-import { newRequestModal } from './new/newRequestModal';
 import { ViewComponent } from './view/viewRequestModal';
 import { LoginPage } from '../login/login';
 import { PopoverPage } from './PopoverPage';
@@ -55,17 +54,6 @@ export class AllRequestPage {
       this.cs.hideLoader();
       this.cs.errMessage();
     });
-  }
-
-  newRequest(): void {
-    let newRequest = this.modalCtrl.create(newRequestModal);
-    newRequest.onDidDismiss((newRequest) => {
-      if (!newRequest) { return; }
-      if (!this.allRequests) { this.allRequests = []; }
-      this.EmptyRequests = false;
-      this.allRequests.unshift(newRequest);
-    });
-    newRequest.present();
   }
 
   onError() {

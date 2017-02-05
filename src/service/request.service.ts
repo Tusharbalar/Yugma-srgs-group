@@ -16,15 +16,14 @@ export class RequestService {
 
   constructor(private _http : Http,
               private _configuration: Configuration) {
-
   }
 
-  getHeader() {
+  public getHeader() {
     this.serverUrl = this._configuration.Server;;
     this.header = this._configuration.header();
   }
 
-  getRequests(pageNo): Observable<any> {
+  public getRequests(pageNo): Observable<any> {
     this.getHeader();
     return this._http.get(this.serverUrl + "/page/" + pageNo, this.header).map((res: Response) => {
       return res;
@@ -73,26 +72,26 @@ export class RequestService {
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
-  getRequestByStatus(statusId, page) {
+  public getRequestByStatus(statusId, page) {
     return this._http.get(this.serverUrl + "/status/" + statusId + "/page/" + page, this.header).map((res: Response) => {
       return res;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
-  editInfo(): Observable<any> {
+  public editInfo(): Observable<any> {
     this.getHeader();
     return this._http.get(this.serverUrl + "/edit-info", this.header).map((res: Response) => {
       return res;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
-  editRequest(id, data): Observable<any> {
+  public editRequest(id, data): Observable<any> {
     return this._http.put(this.serverUrl + "/" + id, data, this.header).map((res: Response) => {
       return res;
     }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
-  getFullRequest(id): Observable<any> {
+  public getFullRequest(id): Observable<any> {
     this.getHeader();
     return this._http.get(this.serverUrl + "/" + id, this.header).map((res: Response) => {
       return res;

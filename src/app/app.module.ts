@@ -16,7 +16,6 @@ import { ListView } from '../customComponent/list/listview.component';
 import { CustomNavbar } from '../customComponent/navbar.component.ts';
 
 import { ViewComponent } from '../pages/all-request/view/viewRequestModal';
-import { newRequestModal } from '../pages/all-request/new/newRequestModal';
 import { CustomService } from '../service/customService';
 import { MomentModule } from 'angular2-moment/moment.module';
 import { ListViewCloseButton,
@@ -24,7 +23,6 @@ import { ListViewCloseButton,
          ListViewCommentButton } from '../customComponent/list/edit-cs-status-and-comment.component';
 import { CommentModal } from '../customComponent/commentModal.ts';
 import { ModalNavbarComponent } from '../customComponent/modal.navbar.component';
-import { ParentInfo } from '../service/parentInfo';
 import { PopoverPage } from '../pages/all-request/PopoverPage';
 import { AccountPage } from '../pages/account/account';
 import { resetPasswordModal } from '../pages/account/resetPassword/resetPassword';
@@ -47,7 +45,6 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     ListViewEditButton,
     CommentModal,
     ModalNavbarComponent,
-    newRequestModal,
     ViewComponent,
     ForgotPasswordModal,
     DashboardComponent,
@@ -75,7 +72,6 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     ListViewEditButton,
     CommentModal,
     ModalNavbarComponent,
-    newRequestModal,
     ViewComponent,
     ForgotPasswordModal,
     DashboardComponent,
@@ -85,6 +81,6 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     EditComplaintModal,
     SearchModal
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService, ParentInfo]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService]
 })
 export class AppModule {}

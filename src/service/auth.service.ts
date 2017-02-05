@@ -33,20 +33,24 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    let access_token = localStorage.getItem("access_token");
-    if (access_token) {
+    this.access_token = localStorage.getItem("access_token");
+    if (this.access_token) {
       this._configuration.setAccessToken();
-      this.info(access_token).subscribe((res) => {
-        this.storeData(res);
-      }, (err) => {
-        if (err.status === 401) {
-         this.events.publish("session:expired");
-        }
-      });
+      this.checkUserSession();
       return !this.hasLogin;
     } else {
       return this.hasLogin;
     }
+  }
+
+  checkUserSession() {
+    this.getUserInfo(this.access_token).subscribe((res) => {
+      this.storeData(res);
+    }, (err) => {
+      if (err.status === 401) {
+       this.events.publish("session:expired");
+      }
+    });
   }
 
   verifyUser(data: Object): Observable<any[]> {
@@ -59,7 +63,7 @@ export class AuthService {
 
   headers;
 
-  info(access_token) {
+  getUserInfo(access_token) {
 
     this.headers = new Headers({
       'Content-Type' : 'application/json',
