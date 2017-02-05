@@ -1,6 +1,6 @@
 import { ModalController, AlertController, ActionSheetController } from 'ionic-angular';
 import { CommentModal } from '../commentModal';
-import { EditComplaintModal } from '../../pages/all-request/edit/editComplaintModal';
+import { EditRequestModal } from '../../pages/all-request/edit/editRequestModal';
 // import service
 import { CustomService } from '../../service/customService';
 import { RequestService } from '../../service/request.service';
@@ -94,7 +94,7 @@ export class EditComplaintStatusAndComment {
 
   openEditModal(complaint) {
     this.complaint = complaint;
-    let edit = this.modalCtrl.create(EditComplaintModal, {complaint: complaint});
+    let edit = this.modalCtrl.create(EditRequestModal, {complaint: complaint});
     edit.onDidDismiss((res) => {
       if (!res) { return; }
       this.complaint.priorityName = res.priorityName;

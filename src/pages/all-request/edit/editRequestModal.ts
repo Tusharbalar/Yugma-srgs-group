@@ -12,11 +12,11 @@ import { RequestService } from '../../../service/request.service';
 import { CustomService } from '../../../service/customService';
 
 @Component({
-  selector: 'edit-complaint-modal',
-  templateUrl: 'editComplaintModal.html'
+  selector: 'edit-request-modal',
+  templateUrl: 'editRequestModal.html'
 })
 
-export class EditComplaintModal implements OnInit {
+export class EditRequestModal implements OnInit {
 
   loading;
   complaint;

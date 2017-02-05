@@ -25,7 +25,7 @@ import { ModalNavbarComponent } from '../customComponent/modal.navbar.component'
 import { PopoverPage } from '../pages/all-request/PopoverPage';
 import { AccountPage } from '../pages/account/account';
 import { resetPasswordModal } from '../pages/account/resetPassword/resetPassword';
-import { EditComplaintModal } from '../pages/all-request/edit/editComplaintModal';
+import { EditRequestModal } from '../pages/all-request/edit/editRequestModal';
 import { SearchModal } from '../customComponent/searchModal';
 
 import { ForgotPasswordModal } from '../pages/login/forgotPassword';
@@ -49,7 +49,7 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     PopoverPage,
     AccountPage,
     resetPasswordModal,
-    EditComplaintModal,
+    EditRequestModal,
     SearchModal
   ],
   imports: [
@@ -75,7 +75,7 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     PopoverPage,
     AccountPage,
     resetPasswordModal,
-    EditComplaintModal,
+    EditRequestModal,
     SearchModal
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService]

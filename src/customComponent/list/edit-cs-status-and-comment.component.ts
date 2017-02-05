@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ModalController, AlertController, ActionSheetController } from 'ionic-angular';
 import { EditComplaintStatusAndComment } from './edit-cs-status-and-comment.class';
 
-import { EditComplaintModal } from '../../pages/all-request/edit/editComplaintModal';
+import { EditRequestModal } from '../../pages/all-request/edit/editRequestModal';
 
 // import service
 import { CustomService } from '../../service/customService';
@@ -95,7 +95,7 @@ export class ListViewEditButton {
 
   openEditModal(complaint) {
     this.complaint = complaint;
-    let edit = this.modalCtrl.create(EditComplaintModal, {complaint: complaint});
+    let edit = this.modalCtrl.create(EditRequestModal, {complaint: complaint});
     edit.onDidDismiss((res) => {
       if (!res) { return; }
       this.updateData(res);
