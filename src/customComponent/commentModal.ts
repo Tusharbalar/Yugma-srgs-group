@@ -17,7 +17,7 @@ import { CustomService } from '../service/customService';
         <h3>No Comments</h3>
       </ion-list>
       <ion-spinner class="circle-spinner" *ngIf="!hasData"></ion-spinner>
-      <div  class="message-box csTransparent" *ngFor="let m of comments" [ngClass]="{'mine': m.employeeId === null}" no-margin>
+      <div  class="message-box csTransparent" *ngFor="let m of comments" [ngClass]="{'mine': m.employeeId != null}" no-margin>
         <div no-padding class="csMyComment">
           <h3>{{ m.comment }}</h3>
         </div>
@@ -81,7 +81,8 @@ export class CommentModal implements OnInit {
     });
     if (complaint.statusId === 4 || complaint.statusId === 6) {
       this.renderer.setElementStyle(this.el.nativeElement, "visibility", 'hidden');
-      this.showToastMessage();
+      let msg = "You can't comment on it any more, may be your complaint status is closed or satisfied";
+      this.nl.showToast(msg);
     }
   }
 
@@ -134,9 +135,8 @@ export class CommentModal implements OnInit {
         if (!this.comments) { this.comments = []; }
         this.comments.push({
           createdAt: new Date(),
-          employeeName: null,
-          comment: this.commentForm.value.comment,
-          parentId: localStorage.getItem("id")
+          employeeId: localStorage.getItem("id"),
+          comment: this.commentForm.value.comment
         });
         this.commentForm.reset();
       }, (err) => {
