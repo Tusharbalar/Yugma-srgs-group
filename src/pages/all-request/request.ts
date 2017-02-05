@@ -151,6 +151,26 @@ export class AllRequestPage {
     });
   }
 
+  ViewAllRequest() {
+    this.statusName = "ALL";
+    this.title = "REQUESTS";
+    this.selectedStatus = 0;
+    this.currentPage = 1;
+    this.allRequests = [];
+    this.getRequests();
+  }
+
+  ViewCloseRequest() {
+    this.statusName = "CLOSED";
+    this.title = "REQUESTS";
+    this.allRequests = [];
+    this.selectedStatus = 4;
+    this.data = {
+      id: 4
+    }
+    this.requestByStatus(this.data);
+  }
+
   filterRequest(data) {
     this.selectedStatus = data.id;
     if (this.selectedStatus === 0) {

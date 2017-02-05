@@ -35,6 +35,10 @@
       <h3> NO RECORD FOUND </h3>
     </ion-item>
   </ion-list>
+  <ion-fab right bottom>
+    <button *ngIf="selectedStatus != 0" ion-fab color="primary" (click)="ViewAllRequest()"><ion-icon name="male"></ion-icon></button>
+    <button *ngIf="selectedStatus === 0" ion-fab color="primary" (click)="ViewCloseRequest()"><ion-icon name="lock"></ion-icon></button>
+  </ion-fab>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
