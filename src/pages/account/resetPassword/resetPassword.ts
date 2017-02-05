@@ -15,6 +15,7 @@ export class resetPasswordModal implements OnInit {
   resetPasswordForm: FormGroup;
   mismatch: boolean = false;
   public loading;
+  public title: string = "Update password";
 
   constructor(private viewCtrl: ViewController,
               private toastCtrl: ToastController,
