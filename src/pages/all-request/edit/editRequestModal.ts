@@ -36,6 +36,7 @@ export class EditRequestModal implements OnInit {
   assignedEmployeeName: string;
   acknowledgements;
   priorityId: number;
+  autoManufacturers;
 
   cmplEdit;
 
@@ -63,6 +64,7 @@ export class EditRequestModal implements OnInit {
     this.employees = JSON.parse(localStorage.getItem("employees"));
     this.acknowledgements = JSON.parse(localStorage.getItem("acknowledgements"));
     console.log(this.priorities);
+
     if (this.priorities === null) {
       this.getEditInfo();
     }
@@ -84,12 +86,21 @@ export class EditRequestModal implements OnInit {
   selectAcknowledgement(data) {
     this.changesMade = true;
     this.editComplaint.value.acknowledgementId = data.id;
+    if (data.id === 2) {
+      this.revisedDueDate = "";
+    }
   }
 
   getComplaint() {
     this.complaint = this.navParams.get("complaint");
     this.complaintId = this.complaint.id;
     this.complaintStatusId = this.complaint.statusId;
+    this.revisedDueDate = this.complaint.revisedDueDate;
+    console.log("QQQ", this.revisedDueDate)
+    this.autoManufacturers = 1;
+    if (this.complaint.acknowledgementId != null) {
+      this.autoManufacturers = this.complaint.acknowledgementId;
+    }
   }
 
   initEditData() {
@@ -107,6 +118,11 @@ export class EditRequestModal implements OnInit {
       assignedTo: new FormControl(this.assignedEmployeeName),
       priorityId: new FormControl(this.priorityId)
     });
+    // this.editComplaint.value.acknowledgementId = "1";
+    // if (this.revisedDueDate != null) {
+    //   console.log("AAAAAAA")
+    //   this.editComplaint.value.acknowledgementId = 2;
+    // }
   }
 
   public dismiss(): void {
@@ -143,8 +159,20 @@ export class EditRequestModal implements OnInit {
     });
   }
 
+  revisedDueDate;
+  comment = [];
+
   updateComplaint() {
     this.editComplaint.value.assignedTo = this.assignedTo;
+    if (this.editComplaint.value.acknowledgementId === 2 && this.revisedDueDate === undefined) {
+      this.nl.showToast("Select revised due date field");
+      return;
+    }
+    console.log(this.comment)
+    if (this.editComplaint.value.acknowledgementId === 3 && this.comment.length === 0) {
+      this.nl.showToast("Write comment");
+      return;
+    }
     if (this.changesMade || this.editComplaint.value.statusId) {
       if (!_.isNumber(this.editComplaint.value.assignedTo)) {
         delete this.editComplaint.value.assignedTo;
@@ -175,6 +203,12 @@ export class EditRequestModal implements OnInit {
   }
 
   onSubmit() {
+    if (this.comment.length != 0) {
+      this.editComplaint.value.comment = this.comment;
+    }
+    if (this.revisedDueDate != undefined) {
+      this.editComplaint.value.revisedDueDate = this.revisedDueDate;
+    }
     this.nl.showLoader();
     this.c.editRequest(this.complaintId, this.editComplaint.value).subscribe((res) => {
       this.onSuccess(res.json());
@@ -201,6 +235,11 @@ export class EditRequestModal implements OnInit {
     } else {
       delete this.editComplaint.value.statusId;
     }
+  }
+
+  updateTime() {
+    console.log("DSDASDA")
+    this.changesMade = true;
   }
 
 }

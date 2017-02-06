@@ -46,6 +46,19 @@
         </ion-item>
       </ion-list>
     </ion-card>
+    <ion-card *ngIf="editComplaint.value.acknowledgementId === 2 || revisedDueDate">
+      <ion-item>
+        <ion-label style="color:grey">Revised Due-Date</ion-label>
+        <ion-datetime max="2019-10-31" displayFormat="DD MMM YYYY" [(ngModel)]="revisedDueDate" (click)="updateTime()" [ngModelOptions]="{standalone: true}" [disabled]="editComplaint.value.acknowledgementId === 1" required></ion-datetime>
+      </ion-item>
+    </ion-card>
+    <ion-card *ngIf="editComplaint.value.acknowledgementId === 3">
+      <ion-item class="csTransparent">
+        <ion-label stacked>Comment</ion-label>
+        <ion-textarea class="csInput-title" rows="8" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}" maxlength="200"></ion-textarea>
+      </ion-item>
+      <ion-badge class="csFiftyLimit" style="top: -18px; position: relative;margin-right:5px; float:right"><span>{{200 - comment.length}}</span></ion-badge>
+    </ion-card>
     <div padding>
       <button type="submit" ion-button block>SUBMIT</button>
     </div>
