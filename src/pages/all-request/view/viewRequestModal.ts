@@ -34,4 +34,8 @@ export class ViewComponent extends EditComplaintStatusAndComment implements OnIn
     console.log("DSADD", this.complaint)
   }
 
+  public dismiss(): void {
+    this.viewCtrl.dismiss(this.complaint);
+  }
+
 }

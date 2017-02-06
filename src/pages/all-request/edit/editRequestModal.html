@@ -1,7 +1,16 @@
 <ion-header>
-  <nl-modal-navbar [title]="title" [complaint]="complaint"></nl-modal-navbar>
+  <ion-navbar color="primary">
+    <ion-title >
+      <span>EDIT REQUEST</span>
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button color="light" class="navBtnRight" (click)="dismiss()">
+        <span color="light" showWhen="ios">Cancel</span>
+        <ion-icon color="light" name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
-
 <ion-content class="csBackgroundGray">
   <form name="editcomplaint" [formGroup]="editComplaint" (ngSubmit)="updateComplaint()" novalidate>
     <ion-card>

@@ -109,8 +109,8 @@ export class EditRequestModal implements OnInit {
     });
   }
 
-  dismiss() {
-    this.viewCtrl.dismiss();
+  public dismiss(): void {
+    this.viewCtrl.dismiss(this.complaint);
   }
 
   openModal() {

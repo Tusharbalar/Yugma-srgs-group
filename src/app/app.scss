@@ -42,22 +42,6 @@ $inherit : inherit;
 //   box-shadow: none;
 // }
 
-.item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input {
-  margin-left: 8px;
-}
-
-ion-navbar.toolbar.toolbar-ios-primary.statusbar-padding {
-  padding-top: 20px;
-}
-
-.toolbar-title.toolbar-title-ios {
-  margin-top: 17px;
-}
-
-ion-toolbar.toolbar.toolbar-ios.toolbar-ios-primary {
-  padding-top: 20px;
-}
-
 .bigIcon{
   font-size: 120px;
     color: #6987ac;
