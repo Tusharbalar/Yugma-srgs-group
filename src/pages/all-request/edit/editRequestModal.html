@@ -12,19 +12,18 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="csBackgroundGray">
-  <form name="editcomplaint" [formGroup]="editComplaint" (ngSubmit)="updateComplaint()" novalidate>
+  <form name="editRequest" [formGroup]="editRequest" (ngSubmit)="updateRequest()" novalidate>
     <ion-card>
       <ion-item style="margin-bottom: -30px;">
         <ion-label color="primary" stacked>Assigned To</ion-label>
-        <ion-input type="text" name="assignedTo" placeholder="Select Employee" formControlName="assignedTo" (focus)="openModal()"></ion-input>
+        <ion-input type="text" name="assignedTo" formControlName="assignedTo" (focus)="openModal()"></ion-input>
       </ion-item>
-      <ion-icon (click)="resetTeacher()" style="float: right;bottom:10px;font-size: 32px; position: relative;margin-right: 15px; color:#fd4545"
-        name="refresh"></ion-icon>
+      <ion-icon name="refresh" (click)="resetEmployee()" style="float: right;bottom:10px;font-size: 32px; position: relative;margin-right: 15px; color:#fd4545"></ion-icon>
     </ion-card>
     <ion-card>
       <ion-item class="csRemoveBottom">
         <ion-label>Set Priority</ion-label>
-        <ion-select name="priorityId" formControlName="priorityId">
+        <ion-select name="statusId" formControlName="statusId">
           <ion-option *ngFor="let priority of priorities" [value]="priority.id">
             {{priority.name}}
           </ion-option>
@@ -32,32 +31,31 @@
       </ion-item>
     </ion-card>
     <ion-card>
-      <ion-item class="csInProgress" *ngIf="complaintStatusId != 3">
+      <ion-item class="csInProgress" *ngIf="requestStatusId != 3">
         <ion-label>Request InProgress</ion-label>
-        <ion-checkbox [(ngModel)]="inProgress.hasSelected" [ngModelOptions]="{standalone: true}" (ionChange)="setStatus($event)">
-        </ion-checkbox>
+        <ion-checkbox formControlName="inProgress"></ion-checkbox>
       </ion-item>
     </ion-card>
     <ion-card>
-      <ion-list radio-group [(ngModel)]="autoManufacturers" [ngModelOptions]="{standalone: true}">
+      <ion-list radio-group formControlName="acknowledgementId">
         <ion-item *ngFor="let a of acknowledgements">
-          <ion-radio value="{{a.id}}" (click)="selectAcknowledgement(a)"></ion-radio>
+          <ion-radio value="{{a.id}}"></ion-radio>
           <ion-label>{{a.name}}</ion-label>
         </ion-item>
       </ion-list>
     </ion-card>
-    <ion-card *ngIf="editComplaint.value.acknowledgementId === 2 || revisedDueDate">
+    <ion-card *ngIf="editRequest.value.acknowledgementId === '2' || dueDate">
       <ion-item>
         <ion-label style="color:grey">Revised Due-Date</ion-label>
-        <ion-datetime max="2019-10-31" displayFormat="DD MMM YYYY" [(ngModel)]="revisedDueDate" (click)="updateTime()" [ngModelOptions]="{standalone: true}" [disabled]="editComplaint.value.acknowledgementId === 1" required></ion-datetime>
+        <ion-datetime max="2018-10-31" [disabled]="editRequest.value.acknowledgementId != '2'" displayFormat="DD MMM YYYY" formControlName="revisedDueDate"></ion-datetime>
       </ion-item>
     </ion-card>
-    <ion-card *ngIf="editComplaint.value.acknowledgementId === 3">
+    <ion-card *ngIf="editRequest.value.acknowledgementId === '3' || comments ">
       <ion-item class="csTransparent">
         <ion-label stacked>Comment</ion-label>
-        <ion-textarea class="csInput-title" rows="8" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}" maxlength="200"></ion-textarea>
+        <ion-textarea class="csInput-title" rows="8" [(ngModel)]="comment" formControlName="comment"  maxlength="200"></ion-textarea>
       </ion-item>
-      <ion-badge class="csFiftyLimit" style="top: -18px; position: relative;margin-right:5px; float:right"><span>{{200 - comment.length}}</span></ion-badge>
+      <ion-badge class="csFiftyLimit" style="top: -18px; position: relative;margin-right:5px; float:right"><span> {{200 - comment.length}}</span></ion-badge>
     </ion-card>
     <div padding>
       <button type="submit" ion-button block>SUBMIT</button>
