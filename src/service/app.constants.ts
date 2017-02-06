@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class Configuration {
@@ -43,6 +44,15 @@ export class Configuration {
 
   getRequestUrl() {
     return "https://yugmatesting01.appspot-preview.com/" + this.role + "/" + this.userId + "/request";
+  }
+
+  tokenUpdate(tokenId) {
+    const notificationToken = {
+      notificationToken: tokenId
+    }
+    return this.http.put(this.Server + "/management/" + this.userId, notificationToken , this.options).map((res: Response) => {
+      return res;
+    }).catch((error: any) => Observable.throw(error || 'server error'));
   }
 
 }
