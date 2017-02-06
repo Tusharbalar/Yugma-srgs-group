@@ -12,7 +12,7 @@ import { RequestService } from '../../service/request.service';
   selector: 'nl-close-button',
   template: `
     <div style="height:100%;">
-      <button ion-button color="secondary" (click)="openCloseModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4">
+      <button ion-button color="secondary" (click)="openCloseModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4  && complaint.statusId != 7">
         <ion-icon name="md-close"></ion-icon>
         Close
       </button>
@@ -66,7 +66,7 @@ export class ListViewCommentButton extends EditComplaintStatusAndComment {
   selector: 'nl-edit-button',
   template: `
     <div style="height:100%;">
-      <button ion-button color="edit" (click)="openEditModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4">
+      <button ion-button color="edit" (click)="openEditModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4  && complaint.statusId != 7">
         <ion-icon name="ios-create"></ion-icon>
         Edit
       </button>
@@ -95,7 +95,7 @@ export class ListViewEditButton {
 
   openEditModal(complaint) {
     this.complaint = complaint;
-    let edit = this.modalCtrl.create(EditRequestModal, {complaint: complaint});
+    let edit = this.modalCtrl.create(EditRequestModal, {request: complaint});
     edit.onDidDismiss((res) => {
       if (!res) { return; }
       this.updateData(res);

@@ -79,9 +79,9 @@ export class CommentModal implements OnInit {
     this.commentForm = new FormGroup({
       comment: new FormControl('', [Validators.required])
     });
-    if (complaint.statusId === 4 || complaint.statusId === 6) {
+    if (complaint.statusId === 4 || complaint.statusId === 6 || complaint.statusId === 7) {
       this.renderer.setElementStyle(this.el.nativeElement, "visibility", 'hidden');
-      let msg = "You can't comment on it any more, may be your complaint status is closed or satisfied";
+      let msg = "You can't comment on it any more, may be your complaint status is closed, satisfied or unresolved";
       this.nl.showToast(msg);
     }
   }
