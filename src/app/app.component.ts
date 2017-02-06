@@ -41,7 +41,7 @@ export class MyApp {
 
     this.pages = [
       { title: 'Dashboard', component: DashboardComponent, icon: 'ios-home-outline', url: 'dashboard' },
-      { title: 'Complaints', component: AllRequestPage, icon: 'ios-sad-outline', url: 'complaint' },
+      { title: 'Requests', component: AllRequestPage, icon: 'ios-sad-outline', url: 'complaint' },
       { title: 'Account', component: AccountPage, icon: 'ios-contact-outline', url: 'account' }
     ];
 
