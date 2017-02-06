@@ -1,0 +1,34 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.franchise.srgs"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.franchise.srgs"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.franchise.srgs"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.franchise.srgs"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.franchise.srgs"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.franchise.srgs"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "85075801930",
+            "PACKAGE_NAME": "com.franchise.srgs"
+        }
+    },
+    "dependent_plugins": {}
+}
