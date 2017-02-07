@@ -27,6 +27,7 @@ import { resetPasswordModal } from '../pages/account/resetPassword/resetPassword
 import { EditRequestModal } from '../pages/all-request/edit/editRequestModal';
 import { SearchModal } from '../customComponent/searchModal';
 
+import { NetworkService } from '../service/app.networkDiagnosis';
 import { ForgotPasswordModal } from '../pages/login/forgotPassword';
 
 @NgModule({
@@ -75,6 +76,6 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     EditRequestModal,
     SearchModal
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, CustomService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, Configuration, RequestService, NetworkService, CustomService]
 })
 export class AppModule {}

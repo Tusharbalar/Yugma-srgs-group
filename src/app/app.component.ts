@@ -12,6 +12,8 @@ import { AccountPage } from '../pages/account/account';
 import { Configuration } from '../service/app.constants';
 import { AuthService } from '../service/auth.service';
 
+import { NetworkService } from '../service/app.networkDiagnosis';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -30,10 +32,11 @@ export class MyApp {
               public alertCtrl: AlertController,
               public menu: MenuController,
               private _configuration: Configuration,
+              public networkService: NetworkService,
               public authService: AuthService) {
+
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      this.networkService.checkNetworkStatus();
       StatusBar.styleDefault();
       Splashscreen.hide();
       this.listenToLoginEvents();
