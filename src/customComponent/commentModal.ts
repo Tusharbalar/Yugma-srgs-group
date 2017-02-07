@@ -21,7 +21,7 @@ import { CustomService } from '../service/customService';
         <div no-padding class="csMyComment">
           <h3>{{ m.comment }}</h3>
         </div>
-        <div class="csCommentTime">{{m.employeeNickName}}{{m.parentName}} {{ m.createdAt | amCalendar }}</div>
+        <div class="csCommentTime">{{m.employeeNickName}}{{m.franchiseName}} {{ m.createdAt | amCalendar }}</div>
       </div>
       <ion-spinner class="loader"  name="dots" *ngIf="!notPost"></ion-spinner>
     </ion-content>
