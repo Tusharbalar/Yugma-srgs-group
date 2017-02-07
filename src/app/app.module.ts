@@ -30,6 +30,8 @@ import { SearchModal } from '../customComponent/searchModal';
 import { NetworkService } from '../service/app.networkDiagnosis';
 import { ForgotPasswordModal } from '../pages/login/forgotPassword';
 
+import { GoogleChart } from '../pages/directive/chart.directive';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -49,7 +51,8 @@ import { ForgotPasswordModal } from '../pages/login/forgotPassword';
     AccountPage,
     resetPasswordModal,
     EditRequestModal,
-    SearchModal
+    SearchModal,
+    GoogleChart
   ],
   imports: [
     MomentModule,

@@ -14,7 +14,7 @@ export class NetworkService {
     Network.onDisconnect().subscribe(() => {
 
       let toast = this.toastCtrl.create({
-        message: 'Your internet connection appears to be offline. Data integrity is guaranteed.',
+        message: 'Your internet connection appears to be offline. Data integrity is not guaranteed.',
         showCloseButton: true,
         closeButtonText: "Ok"
       });
