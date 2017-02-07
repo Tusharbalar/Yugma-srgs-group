@@ -53,16 +53,17 @@ export class EditRequestModal implements OnInit {
   }
 
   getRequest() {
+
     this.request = this.navParams.get("request");
     this.requestId = this.request.id;
     this.requestStatusId = this.request.statusId;
-
     this.priorityId = this.request.priorityId;
+    this.acknowledgementId = JSON.parse(this.request.acknowledgementId);
     this.assignedEmployeeName = this.request.assignedEmployeeName;
+
     this.employeeData = {
       id : this.request.assignedEmployeeId
     }
-    this.acknowledgementId = JSON.parse(this.request.acknowledgementId);
 
     if (this.acknowledgementId === 2) {
       this.dueDate = true;
@@ -103,8 +104,8 @@ export class EditRequestModal implements OnInit {
   loadForm() {
     this.editRequest = new FormGroup({
       assignedTo: new FormControl(this.assignedEmployeeName),
-      statusId: new FormControl(this.priorityId),
-      inProgress: new FormControl(false),
+      priorityId: new FormControl(this.priorityId),
+      statusId: new FormControl(),
       acknowledgementId: new FormControl(this.acknowledgementId, [Validators.required]),
       revisedDueDate: new FormControl(this.request.revisedDueDate),
       comment: new FormControl(this.request.comment)
@@ -155,6 +156,8 @@ export class EditRequestModal implements OnInit {
     this.editRequest.value.assignedTo = this.employeeData.id;
     if (this.editRequest.value.statusId) {
       this.editRequest.value.statusId = "3";
+    } else {
+      delete this.editRequest.value.statusId;
     }
 
     this.nl.showLoader();

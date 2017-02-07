@@ -91,6 +91,13 @@ export class ListViewEditButton {
     this.complaint.statusName = data.statusName;
     this.complaint.statusId = data.statusId;
     this.complaint.statusColor = data.statusColor;
+    this.complaint.priorityId = data.priorityId;
+    this.complaint.assignedEmployeeName = data.assignedEmployeeName;
+    this.complaint.acknowledgementId = data.acknowledgementId;
+    if (data.revisedDueDate != "") {
+      this.complaint.revisedDueDate = data.revisedDueDate;
+    }
+    console.log(data)
   }
 
   openEditModal(complaint) {

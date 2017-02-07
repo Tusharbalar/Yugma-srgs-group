@@ -23,7 +23,7 @@
     <ion-card>
       <ion-item class="csRemoveBottom">
         <ion-label>Set Priority</ion-label>
-        <ion-select name="statusId" formControlName="statusId">
+        <ion-select name="priorityId" formControlName="priorityId">
           <ion-option *ngFor="let priority of priorities" [value]="priority.id">
             {{priority.name}}
           </ion-option>
@@ -33,7 +33,7 @@
     <ion-card>
       <ion-item class="csInProgress" *ngIf="requestStatusId != 3">
         <ion-label>Request InProgress</ion-label>
-        <ion-checkbox formControlName="inProgress"></ion-checkbox>
+        <ion-checkbox formControlName="statusId"></ion-checkbox>
       </ion-item>
     </ion-card>
     <ion-card>
