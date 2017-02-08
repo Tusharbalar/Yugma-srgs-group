@@ -10,9 +10,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="csBlueColor">
+  <ion-content class="csGrayBackground">
     <ion-list>
-      <button class="csStrip" [class.csSelected]="selectedPage == p.title" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button class="csStrip" color="$csStripColor" [class.csSelected]="selectedPage == p.title" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon item-left [name]="p.icon"></ion-icon>
         {{p.title}}
       </button>
