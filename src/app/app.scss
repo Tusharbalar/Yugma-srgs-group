@@ -83,22 +83,190 @@ ion-toolbar{
   }
 }
 
-/* CS Theme */
-.csLightText{
-  color:#fff;
+//-----------------------------C.S.---------------------
+
+.setBottom {
+    position: absolute;
+    bottom: 5px;
+}
+.csWhiteText {
+    color: white;
+}
+.csCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.csBorderWhite {
+    border: solid 1px white;
+    box-shadow: 0px 0px 8px #000000;
+}
+.csBackgroundGray {
+    background: $csBackgroundColor;
+}
+.csCircle {
+    border-radius: 100%;
+    border: 3px solid #fff;
+}
+.csBoxShadow {
+    box-shadow: 4px 4px 9px black;
+}
+.csFontColor1 {
+    color: $color1 !important;
+}
+.csLoginLogo {
+    @extend .csCenter;
+    width: 30%;
+}
+.csWidth {
+    width: 90%;
+}
+.csTransparent {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+/*-----------*/
+
+.csHeader {
+    background-color: $color1;
+    color: #fff !important;
+}
+.csLightHeader {
+    background: $csGray;
+    span {
+        color: black;
+    }
+}
+.action-sheet-ios,
+.action-sheet-md,
+.action-sheet-wp {
+    .action-sheet-button {
+        color: $color1 !important;
+    }
+}
+.label-ios-primary,
+.item-input .label-ios-primary,
+.item-select .label-ios-primary,
+.item-datetime .label-ios-primary,
+.label-ios[stacked],
+.label-wp[stacked],
+.label-md[stacked] {
+    // color: #fd4545;
+    font-size: 1.4rem;
+}
+.csParagraph {
+    font-size: 1.4rem;
+    white-space: pre-line;
+    margin-top: 5px;
+}
+.csListCardIcon {
+    margin-top: 32px !important;
+}
+.csFont {
+    font-size: 1.4rem;
+}
+.csRight{
+    float:right;
+}
+ion-content{
+    @extend .csGrayBackground;
+}
+.item-ios{
+    font-size:1.4rem !important;
+}
+.csBold{
+  font-weight: bold;
 }
 
-.csStrip{
-    background:$csStripColor;
-}
+//-----------------------------C.S.---------------------
 
-.csBlueColor{
-  background:$csDarkStrip;
-  .item-ios[detail-push] .item-inner, button.item-ios:not([detail-none]) .item-inner, a.item-ios:not([detail-none]) .item-inner{
-  }
+.setBottom {
+    position: absolute;
+    bottom: 5px;
 }
+.csWhiteText {
+    color: white;
+}
+.csCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.csBorderWhite {
+    border: solid 1px white;
+    box-shadow: 0px 0px 8px #000000;
+}
+.csBackgroundGray {
+    background: $csBackgroundColor;
+}
+.csCircle {
+    border-radius: 100%;
+    border: 3px solid #fff;
+}
+.csBoxShadow {
+    box-shadow: 4px 4px 9px black;
+}
+.csFontColor1 {
+    color: $color1 !important;
+}
+.csLoginLogo {
+    @extend .csCenter;
+    width: 30%;
+}
+.csWidth {
+    width: 90%;
+}
+.csTransparent {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+/*-----------*/
 
-.csSelected{
-  background:$color1;
-  color:white;
+.csHeader {
+    background-color: $color1;
+    color: #fff !important;
+}
+.csLightHeader {
+    background: $csGray;
+    span {
+        color: black;
+    }
+}
+.action-sheet-ios,
+.action-sheet-md,
+.action-sheet-wp {
+    .action-sheet-button {
+        color: $color1 !important;
+    }
+}
+.label-ios-primary,
+.item-input .label-ios-primary,
+.item-select .label-ios-primary,
+.item-datetime .label-ios-primary,
+.label-ios[stacked],
+.label-wp[stacked],
+.label-md[stacked] {
+    // color: #fd4545;
+    font-size: 1.4rem;
+}
+.csParagraph {
+    font-size: 1.4rem;
+    white-space: pre-line;
+    margin-top: 5px;
+}
+.csListCardIcon {
+    margin-top: 32px !important;
+}
+.csFont {
+    font-size: 1.4rem;
+}
+.csRight{
+    float:right;
+}
+ion-content{
+    @extend .csGrayBackground;
+}
+.item-ios{
+    font-size:1.4rem !important;
+}
+.csBold{
+  font-weight: bold;
 }

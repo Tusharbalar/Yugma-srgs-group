@@ -79,10 +79,6 @@ $csLightHeaderColor: #e3e0e0;
 .csWidth {
     width: 90%;
 }
-.csLoginScreen {
-    @extend .csBackground;
-    background-image: csBackgroundSvg('college4.svg');
-}
 .csTransparent {
     background-color: rgba(255, 255, 255, 0) !important;
 }
