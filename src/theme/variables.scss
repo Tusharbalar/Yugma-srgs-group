@@ -24,34 +24,33 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #00bcd4,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  cool:       #607D8B,
-  fab:        #3e9e3e,
-  header:     #387ef5,
-  color1:     #00bcd4,
-  colorLight: #80deea,
-  transparent: rgba(0, 0, 0, 0),
-  csStripColor:#797d80
+  primary:        #26a69a,
+  secondary:      #32db64,
+  danger:         #f53d3d,
+  light:          #f4f4f4,
+  dark:           #222,
+  cool:           #607D8B,
+  fab:            #3e9e3e,
+  header:         #387ef5,
+  color1:         #00bcd4,
+  colorLight:     #80deea,
+  transparent:    rgba(0, 0, 0, 0),
+  csStripColor:   #797d80
 );
 
-$color0 :       #fd4544;
-$color1 :       #00bcd4;
-$colorLight:    #00acc1;
-$dim:           #dddddd;
-$csBlue:        #37cbff;
-$csGreen:       #47c947;
-$csGray:        #818181;
-$csDark:          #000;
-$csBorder:        #ffd180;
+$color0 :           #ee6e73;
+$color1 :           #26a69a;
+$colorLight:        #00acc1;
+$dim:               #dddddd;
+$csBlue:            #37cbff;
+$csGreen:           #47c947;
+$csGray:            #818181;
+$csDark:             #000;
+$csBorder:          #ffd180;
 $csBackgroundColor: #f0f0f0;
-$csStripColor:#f8f8f8;
-$csDarkStrip:#dedede;
-
-$csTransparentWhite: rgba(255, 255, 255, 0.66);
+$csStripColor:      #f8f8f8;
+$csDarkStrip:       #dedede;
+$csTransparentWhite:rgba(255, 255, 255, 0.66);
 
 $csInputIconSize: 25px;
 $csTop:           5px;
