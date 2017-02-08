@@ -1,4 +1,5 @@
 <ion-header>
+  <ion-toolbar color="primary">
   <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -7,18 +8,26 @@
       <span>DASHBOARD</span>
     </ion-title>
   </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <div style="height:400px; width:100%;" GoogleChart id="year-wise-request" [chartData]="yearwiseData" [chartOptions]="yearWiseOptions" chartType="ColumnChart" (onSelected)="onSelected($event)"> </div>
-
-  <div style="height:400px; width:100%;" GoogleChart id="category-wise-request" [chartData]="categorywiseData" [chartOptions]="categorywiseOptions"chartType="BarChart" (onSelected)="onSelected($event)"> </div>
-
-  <div style="height:400px; width:100%;" GoogleChart id="franchise-wise-request" [chartData]="franchisewiseData" [chartOptions]="franchisewiseOptions" chartType="BarChart" (onSelected)="onSelected($event)"> </div>
-
-  <div style="height:400px; width:100%;" GoogleChart id="status-wise-request" [chartData]="statuswiseData" [chartOptions]="statuswiseOptions" chartType="PieChart" (onSelected)="onSelected($event)"> </div>
-
-  <div style="height:400px; width:100%;" GoogleChart id="unresolved-request" [chartData]="unresolvedRequestData" [chartOptions]="unresolvedRequestOptions" chartType="PieChart" (onSelected)="onSelected($event)"> </div>
-
-  <div style="height:400px; width:100%;" GoogleChart id="weekly-request" [chartData]="weeklyData" [chartOptions]="weeklyOptions" chartType="BarChart" (onSelected)="onSelected($event)"> </div>
+<ion-content class="csGrayBackground">
+  <ion-card>
+    <div style="height:400px; width:100%;" GoogleChart id="year-wise-request" [chartData]="yearwiseData" [chartOptions]="yearWiseOptions" chartType="ColumnChart" (onSelected)="onSelected($event)"> </div>
+  </ion-card>
+  <ion-card>
+    <div style="height:400px; width:100%;" GoogleChart id="category-wise-request" [chartData]="categorywiseData" [chartOptions]="categorywiseOptions"chartType="BarChart" (onSelected)="onSelected($event)"> </div>
+  </ion-card>
+  <ion-card>
+    <div style="height:400px; width:100%;" GoogleChart id="franchise-wise-request" [chartData]="franchisewiseData" [chartOptions]="franchisewiseOptions" chartType="BarChart" (onSelected)="onSelected($event)"> </div>
+  </ion-card> 
+  <ion-card>
+    <div style="height:400px; width:100%;" GoogleChart id="status-wise-request" [chartData]="statuswiseData" [chartOptions]="statuswiseOptions" chartType="PieChart" (onSelected)="onSelected($event)"> </div>
+  </ion-card>
+  <ion-card>
+   <div style="height:400px; width:100%;" GoogleChart id="unresolved-request" [chartData]="unresolvedRequestData" [chartOptions]="unresolvedRequestOptions" chartType="PieChart" (onSelected)="onSelected($event)"> </div>
+  </ion-card>
+  <ion-card>
+    <div style="height:400px; width:100%;" GoogleChart id="weekly-request" [chartData]="weeklyData" [chartOptions]="weeklyOptions" chartType="BarChart" (onSelected)="onSelected($event)"> </div>
+  </ion-card>
 </ion-content>
