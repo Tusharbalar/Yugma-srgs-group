@@ -169,3 +169,13 @@ rating{
 .csStudentName{
     text-align:center !important;
 }
+.header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios,
+.header-md .toolbar-background-md, .footer-md .toolbar-background-md {
+    border: none;
+}
+.no-comment{
+    @extend .csCenter;
+    margin-top:150px;
+    width:100px;
+    color:dimgray;
+}
