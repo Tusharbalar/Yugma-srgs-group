@@ -1,4 +1,5 @@
 <ion-header>
+  <ion-toolbar color="primary">
   <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -12,6 +13,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="complaint-list csMargin">
@@ -30,11 +32,10 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <ion-list>
-    <ion-item *ngIf="EmptyRequests">
-      <h3> NO RECORD FOUND </h3>
-    </ion-item>
-  </ion-list>
+    <ion-list class="no-comment" *ngIf="EmptyRequests">
+        <img src="../../assets/svg/empty.svg" />
+        <span>No Record Found</span>
+    </ion-list> 
   <ion-fab right bottom>
     <button *ngIf="selectedStatus != 0" ion-fab color="primary" (click)="ViewAllRequest()"><ion-icon name="male"></ion-icon></button>
     <button *ngIf="selectedStatus === 0" ion-fab color="primary" (click)="ViewCloseRequest()"><ion-icon name="lock"></ion-icon></button>

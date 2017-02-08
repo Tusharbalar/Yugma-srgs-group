@@ -1,24 +1,26 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title >
-      <span>EDIT REQUEST</span>
-    </ion-title>
-    <ion-buttons start>
-      <button ion-button color="light" class="navBtnRight" (click)="dismiss()">
+  <ion-toolbar color="primary">
+    <ion-navbar color="primary">
+      <ion-title>
+        <span>EDIT REQUEST</span>
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button color="light" class="navBtnRight" (click)="dismiss()">
         <span color="light" showWhen="ios">Cancel</span>
         <ion-icon color="light" name="md-close" showWhen="android,windows"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content class="csBackgroundGray">
   <form name="editRequest" [formGroup]="editRequest" (ngSubmit)="updateRequest()" novalidate>
     <ion-card>
       <ion-item style="margin-bottom: -30px;">
-        <ion-label color="primary" stacked>Assigned To</ion-label>
+        <ion-label stacked>Assigned To</ion-label>
         <ion-input type="text" name="assignedTo" formControlName="assignedTo" (focus)="openModal()"></ion-input>
       </ion-item>
-      <ion-icon name="refresh" (click)="resetEmployee()" style="float: right;bottom:10px;font-size: 32px; position: relative;margin-right: 15px; color:#fd4545"></ion-icon>
+      <ion-icon name="refresh" (click)="resetEmployee()" style="float: right;bottom:10px;font-size: 32px; position: relative;margin-right: 15px;" color="primary"></ion-icon>
     </ion-card>
     <ion-card>
       <ion-item class="csRemoveBottom">
@@ -46,14 +48,14 @@
     </ion-card>
     <ion-card *ngIf="editRequest.value.acknowledgementId === '2' || dueDate">
       <ion-item>
-        <ion-label style="color:grey">Revised Due-Date</ion-label>
+        <ion-label>Revised Due-Date</ion-label>
         <ion-datetime max="2018-10-31" [disabled]="editRequest.value.acknowledgementId != '2'" displayFormat="DD MMM YYYY" formControlName="revisedDueDate"></ion-datetime>
       </ion-item>
     </ion-card>
     <ion-card *ngIf="editRequest.value.acknowledgementId === '3' || comments ">
       <ion-item class="csTransparent">
         <ion-label stacked>Comment</ion-label>
-        <ion-textarea class="csInput-title" rows="8" [(ngModel)]="comment" formControlName="comment"  maxlength="200"></ion-textarea>
+        <ion-textarea class="csInput-title" rows="8" [(ngModel)]="comment" formControlName="comment" maxlength="200"></ion-textarea>
       </ion-item>
       <ion-badge class="csFiftyLimit" style="top: -18px; position: relative;margin-right:5px; float:right"><span> {{200 - comment.length}}</span></ion-badge>
     </ion-card>
