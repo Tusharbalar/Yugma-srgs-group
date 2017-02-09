@@ -7,7 +7,7 @@
       <ion-buttons start>
         <button ion-button color="light" class="navBtnRight" (click)="dismiss()">
         <span color="light" showWhen="ios">Cancel</span>
-        <ion-icon color="light" name="md-close" showWhen="android,windows"></ion-icon>
+        <ion-icon color="light" name="md-close" class="csBigIcon" showWhen="android,windows"></ion-icon>
       </button>
       </ion-buttons>
     </ion-navbar>
@@ -69,6 +69,13 @@
   </ion-card>
   <ion-list>
     <ion-card>
+      <ion-item *ngIf="complaint.closedOn==null" class="csTransparent csBottom-card">
+        <ion-icon name="md-clock" [style.color]="complaint.statusColor"></ion-icon>
+        <span [style.color]="complaint.statusColor" class="csBoldFont">Created at</span>
+        <span item-right icon-left>
+          <h5>{{complaint.createdAt  | amDateFormat: 'LL'}}</h5>
+        </span>
+      </ion-item>
       <ion-item *ngIf="complaint.dueDate" class="csTransparent csBottom-card">
         <ion-icon name="md-clock" [style.color]="complaint.statusColor"></ion-icon>
         <span [style.color]="complaint.statusColor" class="csBoldFont">Due Date</span>
@@ -77,8 +84,8 @@
         </span>
       </ion-item>
       <ion-item *ngIf="complaint.revisedDueDate" class="csTransparent csBottom-card">
-        <ion-icon name="body" [style.color]="complaint.statusColor"></ion-icon>
-        <span [style.color]="complaint.statusColor" class="csBoldFont">Revised DueDate</span>
+        <ion-icon name="timer" [style.color]="complaint.statusColor"></ion-icon>
+        <span [style.color]="complaint.statusColor" class="csBoldFont">Revised Due Date</span>
         <span item-right icon-left>
           <h5>{{complaint.revisedDueDate  | amDateFormat: 'LL'}}</h5>
         </span>
@@ -101,13 +108,6 @@
   </ion-list>
   <ion-list>
     <ion-card>
-      <ion-item *ngIf="complaint.closedOn==null" class="csTransparent csBottom-card">
-        <ion-icon name="md-clock" [style.color]="complaint.statusColor"></ion-icon>
-        <span [style.color]="complaint.statusColor" class="csBoldFont">Created at</span>
-        <span item-right icon-left>
-          <h5>{{complaint.createdAt  | amDateFormat: 'LL'}}</h5>
-        </span>
-      </ion-item>
       <ion-item *ngIf="complaint.againstCategoryName && !complaint.againstEmployeeName" class="csTransparent">
         <ion-icon name="construct" [style.color]="complaint.statusColor"></ion-icon>
         <span [style.color]="complaint.statusColor" class="csBoldFont">Against</span>

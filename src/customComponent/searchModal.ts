@@ -9,7 +9,7 @@ import { ViewController, NavParams } from 'ionic-angular';
         <ion-buttons start>
           <button ion-button class="navBtnRight" color="light" (click)="dismiss()">
             <span  showWhen="ios"><ion-icon name="close-circle" color="light"></ion-icon></span>
-            <ion-icon name="md-close" color="light" showWhen="android,windows"></ion-icon>
+            <ion-icon name="md-close" class="csBigIcon" color="light" showWhen="android,windows"></ion-icon>
           </button>
         </ion-buttons>
         <ion-title>

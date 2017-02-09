@@ -13,7 +13,7 @@ import { RequestService } from '../../service/request.service';
   template: `
     <div style="height:100%;">
       <button ion-button color="secondary" (click)="openCloseModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4  && complaint.statusId != 7">
-        <ion-icon name="md-close"></ion-icon>
+        <ion-icon name="md-close" class="csBigIcon"></ion-icon>
         Close
       </button>
     </div>
@@ -40,7 +40,7 @@ export class ListViewCloseButton extends EditComplaintStatusAndComment {
   template: `
     <div style="height:100%;">
       <button ion-button color="cool" (click)="openCommentModal(complaint)">
-        <ion-icon name="ios-chatbubbles"></ion-icon>
+        <ion-icon name="ios-chatbubbles" class="csBigIcon"></ion-icon>
         Comments
       </button>
     </div>
@@ -67,7 +67,7 @@ export class ListViewCommentButton extends EditComplaintStatusAndComment {
   template: `
     <div style="height:100%;">
       <button ion-button color="edit" (click)="openEditModal(complaint)" *ngIf="complaint.statusId != 6 && complaint.statusId != 4  && complaint.statusId != 7">
-        <ion-icon name="ios-create"></ion-icon>
+        <ion-icon name="ios-create" class="csBigIcon"></ion-icon>
         Edit
       </button>
     </div>
