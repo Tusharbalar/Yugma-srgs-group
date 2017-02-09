@@ -132,6 +132,10 @@ export class EditRequestModal implements OnInit {
   }
 
   updateRequest() {
+    if (this.editRequest.value.acknowledgementId === null) {
+      this.nl.showToast("Please select atleaset one options");
+      return;
+    }
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Edit Request ?',
       buttons: [{
